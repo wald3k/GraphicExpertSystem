@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Hangar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="bazaxml.xsd">
+	
+	<Pytania>
+		<pytanie>
+			<id>101</id>
+			<typ>single</typ>
+                        <waznosc_pytania>true</waznosc_pytania>
+			<tresc>"Czy lubisz grafike 3D?"</tresc>
+                        <odpowiedzi>
+                            <odpowiedz>Tak lubie grafike!</odpowiedz>
+                            <odpowiedz>Tak lubie grafike 3D.</odpowiedz>
+                            <odpowiedz>Lubie tylko MS PAINT.</odpowiedz>
+                            <odpowiedz>Nie.</odpowiedz>
+                        </odpowiedzi>
+		</pytanie>
+		<pytanie>
+			<id>102</id>
+			<typ>radio</typ>
+			<nazwa>Rudy</nazwa>
+		</pytanie>
+		<pytanie>
+			<id>103</id>
+			<typ>plot</typ>
+			<nazwa>Super_Star</nazwa>
+		</pytanie>
+	</Pytania>
+	
+	<Wypozyczajace>
+		<wypozyczajacy>
+			<id>11</id>
+			<stopien>Admiral</stopien>
+			<imie>Zenon</imie>
+			<nazwisko>Nowak</nazwisko>
+		</wypozyczajacy>
+		<wypozyczajacy>
+			<id>12</id>
+			<stopien>Szeregowy</stopien>
+			<imie>Waclaw</imie>
+			<nazwisko>Psikuta</nazwisko>
+		</wypozyczajacy>
+	</Wypozyczajace>
+	
+	
+	<Wyjazdy>
+		<wyjazd>
+			<id>101</id>
+			<idPojazd>103</idPojazd>
+			<idWypozyczajacy>11</idWypozyczajacy>
+			<data>2014-08-14</data>
+		</wyjazd>
+		<wyjazd>
+			<id>102</id>
+			<idPojazd>102</idPojazd>
+			<idWypozyczajacy>12</idWypozyczajacy>
+			<data>2013-07-12</data>
+		</wyjazd>
+	</Wyjazdy>
+
+</Hangar>

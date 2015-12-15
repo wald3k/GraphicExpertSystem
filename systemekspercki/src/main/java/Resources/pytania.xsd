@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+<xsd:element name="Odpowiedz">
+<xsd:simpleType>
+	<xsd:restriction base="xsd:string">
+		<xsd:minLength value="1" />
+		<xsd:maxLength value="320" />
+	</xsd:restriction>
+</xsd:simpleType>
+</xsd:element>
+
+<xsd:element name="Pojazd">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="typ" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="nazwa" type="xsd:string" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Wypozyczajacy">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="stopien" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="imie" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="nazwisko" type="xsd:string" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Wyjazd">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="idPojazd" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="idWypozyczajacy" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="data" type="xsd:bazaData" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Przyjazd">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="idPojazd" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="idWypozyczajacy" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="data" type="xsd:bazaData" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+<xsd:element name="Stan">
+	<xsd:complexType>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="idPojazd" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="przebieg" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="paliwo" type="xsd:unsignedInt" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="gotowosc" type="xsd:string" minOccurs="1" maxOccurs="1" />
+			<xsd:element name="data" type="xsd:bazaData" minOccurs="1" maxOccurs="1" />
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+<xsd:element name="Pytanie">
+	<xsd:complexType>
+            <xsd:sequence>
+                
+		<xsd:element name="Odpowiedzi" type="xsd:Odpowiedz" minOccurs="0" maxOccurs="20" />
+            </xsd:sequence>
+            
+            	
+		<xsd:element name="Odpoiedz">
+                    <xsd:element name="nazwa" type="xsd:string" minOccurs="1" maxOccurs="20" />
+			
+		</xsd:element>
+		
+		<xsd:element name="Wypozyczajace">
+			<xsd:sequence>
+				<xsd:element name="wypozyczajacy" type="xsd:Wypozyczajacy" minOccurs="0" maxOccurs="10000" />
+			</xsd:sequence>
+		</xsd:element>
+		
+		<xsd:element name="Wyjazdy">
+			<xsd:sequence>
+				<xsd:element name="wyjazd" type="xsd:Wyjazd" minOccurs="0" maxOccurs="10000" />
+			</xsd:sequence>
+		</xsd:element>
+		
+		<xsd:element name="Przyjazdy">
+			<xsd:sequence>
+				<xsd:element name="przyjazd" type="xsd:Przyjazd" minOccurs="0" maxOccurs="10000" />
+			</xsd:sequence>
+		</xsd:element>
+		
+		<xsd:element name="Stany">
+			<xsd:sequence>
+				<xsd:element name="stan" type="xsd:Stan" minOccurs="0" maxOccurs="10000" />
+			</xsd:sequence>
+		</xsd:element>
+		
+		
+	</xsd:complexType>
+</xsd:element>
+
+
+
+
+
+</xsd:schema>

@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 public class Main {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
                 
@@ -25,6 +25,6 @@ public class Main {
                 
 		entityManager.close();
 		entityManagerFactory.close();
-	}
+    }
 
 }
