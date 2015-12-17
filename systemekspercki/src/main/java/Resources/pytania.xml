@@ -8,12 +8,49 @@
                         <waznosc_pytania>true</waznosc_pytania>
 			<tresc>"Czy lubisz grafike 3D?"</tresc>
                         <odpowiedzi>
-                            <odpowiedz>Tak lubie grafike!</odpowiedz>
-                            <odpowiedz>Tak lubie grafike 3D.</odpowiedz>
-                            <odpowiedz>Lubie tylko MS PAINT.</odpowiedz>
-                            <odpowiedz>Nie.</odpowiedz>
+                            
+                            <odpowiedz>
+                                <tresc>Tak lubie grafike!</tresc>
+                                <kategoria>
+                                    <id>2</id>
+                                    <punkty>20</punkty>
+                                </kategoria>
+                                <kategoria>
+                                    <id>5</id>
+                                    <punkty>-10</punkty>
+                                </kategoria>
+                            </odpowiedz>
+                            
+                            <odpowiedz>
+                                <tresc>Tak lubie grafike 3D.</tresc>
+                                <kategoria>
+                                    <id>1</id>
+                                    <punkty>15</punkty>
+                                </kategoria>
+                                <kategoria>
+                                    <id>3</id>
+                                    <punkty>10</punkty>
+                                </kategoria>
+                            </odpowiedz>
+                            
+                            <odpowiedz>
+                                <tresc>Lubie tylko MS PAINT.</tresc>
+                                <kategoria>
+                                    <id>6</id>
+                                    <punkty>-30</punkty>
+                                </kategoria>
+                            </odpowiedz>
+
                         </odpowiedzi>
 		</pytanie>
+                <pytanie>
+                    ...
+                </pytanie>
+        </Pytania>
+                
+                
+                
+                
 		<pytanie>
 			<id>102</id>
 			<typ>radio</typ>
