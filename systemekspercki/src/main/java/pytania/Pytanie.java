@@ -6,22 +6,18 @@ import javax.persistence.GeneratedValue;
 
 /**
  * Przchowuje pojedyñcze pytanie quizu.
- * @param id - przechowuje unikalne id pytania
- * @param tresc - przecjowuje treœæ pytania
- * @param obrazek - opcjonalnie przechowuje adres obrazka do wyœwietlenia przy pytaniu
- * @param licznik - zmienan do ustalanai id;
- * @param odpowiedzi - przechowuje mozliwe odpowiedzi
+ * 
  * @author Twoja Stara
  */
 @Entity
 public class Pytanie {
     @Id
     @GeneratedValue
-    private long id;
-    private String tresc;
-    private String obrazek=null;
-    private static long licznik=0;
-    private Odpowiedzi odpowiedzi;
+    private int id;        //przechowuje unikalne id pytania
+    private String tresc=null;   //przecjowuje treœæ pytania
+    private String obrazek=null;    //opcjonalnie przechowuje adres obrazka do wyœwietlenia przy pytaniu
+    private static int licznik=0;  //zmienan do ustalanai id;
+    private Odpowiedzi odpowiedzi=null;  //przechowuje mozliwe odpowiedzi
     
     public Pytanie(){
         id = licznik;
@@ -36,15 +32,35 @@ public class Pytanie {
 
     
     
+    @Override
+    public String toString(){
+        String str = new String();
+        str +="id: "+id;
+        
+        if(tresc != null){
+            str +=" tresc: "+tresc.subSequence(0, 10)+"..."; 
+        }
+        if(obrazek != null){
+            str +=" img: "+obrazek.subSequence(0, 10)+"..."; 
+        }
+        if(odpowiedzi != null){
+           str +=" ilosc odp.: "+odpowiedzi.size();
+        }
+        
+        return str;
+    }
     
     
     
-    public long getId() {
+    
+    
+    
+    public int getId() {
         return id;
     }
 
     //niewiem czy setId jest dobrym pomys³em, jako ¿e id powinno pozostawaæ niezmienne
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -55,5 +71,33 @@ public class Pytanie {
     public void setTresc(String tresc) {
         this.tresc = tresc;
     }    
+
+    /**
+     * @return the obrazek
+     */
+    public String getObrazek() {
+        return obrazek;
+    }
+
+    /**
+     * @param obrazek the obrazek to set
+     */
+    public void setObrazek(String obrazek) {
+        this.obrazek = obrazek;
+    }
+
+    /**
+     * @return the odpowiedzi
+     */
+    public Odpowiedzi getOdpowiedzi() {
+        return odpowiedzi;
+    }
+
+    /**
+     * @param odpowiedzi the odpowiedzi to set
+     */
+    public void setOdpowiedzi(Odpowiedzi odpowiedzi) {
+        this.odpowiedzi = odpowiedzi;
+    }
 }
 

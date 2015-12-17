@@ -6,9 +6,29 @@
 package pytania;
 
 /**
- *
+ * TYP 0
  * @author Freeman
  */
 public class PytaniePojedWyboru extends Pytanie {
+    private static final int typ_pytania =0;
     
+    
+    @Override
+    public String toString(){
+        String str = super.toString();
+        
+        str +=" typ: "+typ_pytania;
+        
+        return str;
+    }
+    
+    
+    
+
+    /**
+     * @return the typ_pytania
+     */
+    public static int getTyp_pytania() {
+        return typ_pytania;
+    }
 }

@@ -6,16 +6,27 @@
 package pytania;
 
 /**
- * Przechowuje id oraz wartoœc kryterium dla konkretnej odpowiedzi.
+ * Przechowuje id KryteriumOceny oraz jego wartoœæ dla konkretnej odpowiedzi.
  * @param id - ID
  * @param value - przechowuje wartoœæ danego kryterium w konkretnej odpowiedzi.
  * @author Freeman
  */
 class Kryterium {
     private int id;
-    private double value;
+    private double value=0.0;
     //private int value;
 
+    @Override
+    public String toString(){
+        String str = new String();
+        str +="id: "+id;
+        str +=" value: "+value; 
+        
+        return str;
+    }
+    
+    
+    
     /**
      * @return the id
      */
@@ -36,4 +47,6 @@ class Kryterium {
     public void setValue(double value) {
         this.value = value;
     }
+    
+    
 }

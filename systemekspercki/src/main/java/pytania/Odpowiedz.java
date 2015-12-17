@@ -10,8 +10,24 @@ package pytania;
  * @author Freeman
  */
 class Odpowiedz {
-    private String tresc;
-    private Kryteria kryteria;
+    private String tresc=null;
+    private Kryteria kryteria=null;
+    
+    
+    @Override
+    public String toString(){
+        String str = new String();
+        str +="tresc: "+tresc.subSequence(0, 10)+"...";
+        
+        if(kryteria != null){
+            str +=" ilosc kryterii: "+kryteria.size(); 
+        }
+        
+        return str;
+    }
+    
+    
+    
 
     /**
      * @return the tresc
