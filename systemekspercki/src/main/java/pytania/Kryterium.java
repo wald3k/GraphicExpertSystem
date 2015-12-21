@@ -12,7 +12,7 @@ package pytania;
  * @author Freeman
  */
 class Kryterium {
-    private int id;
+    private int id; //id odpowiedniegoe KryteriumOceny
     private double value=0.0;
     //private int value;
 
