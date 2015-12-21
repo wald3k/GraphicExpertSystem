@@ -294,7 +294,7 @@ public class XMLReader {
                     
                     pyt.setWagaPytania(czyWaga);
                     pyt.setTresc(trescPytania);
-                    //pyt.setOdpowiedzi(extractOdpowiedzi(nod));
+                    pyt.setOdpowiedzi(extractOdpowiedzi(nod));
                     
 
                     quiz.add(pyt);
@@ -339,17 +339,23 @@ public class XMLReader {
         
 
         if(nodeList.getLength()>0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
+            //nodeList = nodeList.item(5).getChildNodes();
+            
+//            for(int k=0; k<nodeList.getLength() ; k++){
+//                Node nod = nodeList.item(k);
+//                System.out.println("************"+nod.getNodeName()+"************"+nod.getTextContent());
+//            }
             
             for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
 
                 Node nod = nodeList.item(i);
-                Odpowiedz odp;
+                Odpowiedz odp = null;
 
                 if(nod.getNodeType() == Node.ELEMENT_NODE){
                     odp = new Odpowiedz();
-                    
+//System.out.println("************"+nod.getNodeName()+"************"+nod.getTextContent());                    
                     Element elem = (Element)nod;
-
+                
                     //int id = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
                     //int typ = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
                     //boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
@@ -359,17 +365,15 @@ public class XMLReader {
                     
                     //pyt.setWagaPytania(czyWaga);
                     odp.setTresc(trescOdpowiedzi);
-                    odp.setKryteria(extractOdpowiedzi(nod));
+                    //odp.setKryteria(extractOdpowiedzi(nod));
                     
 
                     
-                }
-                
+                }         
                 
                 odpowiedzi.add(odp);
             }
-
-        return quiz;
+        return odpowiedzi;
         }
         else{
             return null;

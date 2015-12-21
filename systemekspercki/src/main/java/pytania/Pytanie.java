@@ -47,6 +47,9 @@ public class Pytanie {
         if(odpowiedzi != null){
            str +=" ilosc odp.: "+odpowiedzi.size();
         }
+        //for(Odpowiedz o: this.odpowiedzi){
+        //    str +=" ; "+o.toString();
+        //}
         
         return str;
     }
