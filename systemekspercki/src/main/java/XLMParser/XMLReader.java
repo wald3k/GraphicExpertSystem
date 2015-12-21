@@ -13,6 +13,7 @@ import org.w3c.dom.Element;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import pytania.Odpowiedz;
 import pytania.Odpowiedzi;
 import pytania.Pytanie;
 import pytania.PytaniePojedWyboru;
@@ -331,68 +332,51 @@ public class XMLReader {
         }
     }
 
-//    private Odpowiedzi extractOdpowiedzi(Node bigNod) {
-//        Odpowiedzi odpowiedzi = new Odpowiedzi();
-//        
-//        NodeList nodeList = bigNod.getChildNodes();
-//
-//        if(nodeList.getLength()>0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
-//            
-//            NodeList nodeList = bigNod.item(0).getChildNodes();
-//
-//            for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
-//
-//                Node nod = nodeList.item(i);
-//                Pytanie pyt;
-//
-//                if(nod.getNodeType() == Node.ELEMENT_NODE){
-//                    
-//                    Element elem = (Element)nod;
-//
-//                    //int id = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
-//                    int typ = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
-//                    boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
-//                    String trescPytania = elem.getElementsByTagName("tresc").item(0).getTextContent();
-//                    
-//                    switch(typ){
-//                    case(0):
-//                        pyt = new PytaniePojedWyboru();
-//                        break;
-//                    case(1):
-//                        pyt = new PytaniePojedWyboru();
-//                        break;
-//                    case(2):
-//                        pyt = new PytaniePojedWyboru();
-//                        break;
-//                    case(3):
-//                        pyt = new PytaniePojedWyboru();
-//                        break;
-//                    default:
-//                        pyt = null;
-//                        System.out.println("ERROR! Z³y typ pytania podczas odczytu pliku XML!");
-//                        break;
-//                    }
-//                    
-//                    pyt.setWagaPytania(czyWaga);
-//                    pyt.setTresc(trescPytania);
-//                    pyt.setOdpowiedzi(extractOdpowiedzi(nod));
-//                    
-//
-//                    
-//                }
-//                
-//                
-//                quiz.add(pyt);
-//            }
-//
-//        return quiz;
-//        }
-//        else{
-//            return null;
-//        }
-//        
-//        
-//    }
+    private Odpowiedzi extractOdpowiedzi(Node bigNod) {
+        Odpowiedzi odpowiedzi = new Odpowiedzi();
+        
+        NodeList nodeList = bigNod.getChildNodes();
+        
+
+        if(nodeList.getLength()>0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
+            
+            for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
+
+                Node nod = nodeList.item(i);
+                Odpowiedz odp;
+
+                if(nod.getNodeType() == Node.ELEMENT_NODE){
+                    odp = new Odpowiedz();
+                    
+                    Element elem = (Element)nod;
+
+                    //int id = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
+                    //int typ = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
+                    //boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
+                    String trescOdpowiedzi = elem.getElementsByTagName("tresc").item(0).getTextContent();
+                    
+                    
+                    
+                    //pyt.setWagaPytania(czyWaga);
+                    odp.setTresc(trescOdpowiedzi);
+                    odp.setKryteria(extractOdpowiedzi(nod));
+                    
+
+                    
+                }
+                
+                
+                odpowiedzi.add(odp);
+            }
+
+        return quiz;
+        }
+        else{
+            return null;
+        }
+        
+        
+    }
     
     
 }

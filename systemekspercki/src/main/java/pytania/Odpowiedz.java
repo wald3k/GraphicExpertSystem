@@ -17,7 +17,7 @@ public class Odpowiedz {
     @Override
     public String toString(){
         String str = new String();
-        str +="tresc: "+tresc.subSequence(0, 10)+"...";
+        str +="tresc: "+tresc.subSequence(0, 16)+"...";
         
         if(kryteria != null){
             str +=" ilosc kryterii: "+kryteria.size(); 
