@@ -1,97 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Hangar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="bazaxml.xsd">
+<Pytania xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="pytania.xsd">
 	
-	<Pytania>
-		<pytanie>
-			<id>101</id>
-			<typ>single</typ>
-                        <waznosc_pytania>true</waznosc_pytania>
-			<tresc>"Czy lubisz grafike 3D?"</tresc>
-                        <odpowiedzi>
-                            
-                            <odpowiedz>
-                                <tresc>Tak lubie grafike!</tresc>
-                                <kategoria>
-                                    <id>2</id>
-                                    <punkty>20</punkty>
-                                </kategoria>
-                                <kategoria>
-                                    <id>5</id>
-                                    <punkty>-10</punkty>
-                                </kategoria>
-                            </odpowiedz>
-                            
-                            <odpowiedz>
-                                <tresc>Tak lubie grafike 3D.</tresc>
-                                <kategoria>
-                                    <id>1</id>
-                                    <punkty>15</punkty>
-                                </kategoria>
-                                <kategoria>
-                                    <id>3</id>
-                                    <punkty>10</punkty>
-                                </kategoria>
-                            </odpowiedz>
-                            
-                            <odpowiedz>
-                                <tresc>Lubie tylko MS PAINT.</tresc>
-                                <kategoria>
-                                    <id>6</id>
-                                    <punkty>-30</punkty>
-                                </kategoria>
-                            </odpowiedz>
+    <pytanie>
+            <id>101</id>
+            <typ>0</typ>
+            <czy_waga>true</czy_waga>
+            <obrazek>C:/twojaStara/obrazek1.jpg</obrazek>
+            <tresc>"Czy lubisz grafike 3D?"</tresc>
+            <odpowiedzi>
 
-                        </odpowiedzi>
-		</pytanie>
-                <pytanie>
-                    ...
-                </pytanie>
-        </Pytania>
-                
-                
-                
-                
-		<pytanie>
-			<id>102</id>
-			<typ>radio</typ>
-			<nazwa>Rudy</nazwa>
-		</pytanie>
-		<pytanie>
-			<id>103</id>
-			<typ>plot</typ>
-			<nazwa>Super_Star</nazwa>
-		</pytanie>
-	</Pytania>
-	
-	<Wypozyczajace>
-		<wypozyczajacy>
-			<id>11</id>
-			<stopien>Admiral</stopien>
-			<imie>Zenon</imie>
-			<nazwisko>Nowak</nazwisko>
-		</wypozyczajacy>
-		<wypozyczajacy>
-			<id>12</id>
-			<stopien>Szeregowy</stopien>
-			<imie>Waclaw</imie>
-			<nazwisko>Psikuta</nazwisko>
-		</wypozyczajacy>
-	</Wypozyczajace>
-	
-	
-	<Wyjazdy>
-		<wyjazd>
-			<id>101</id>
-			<idPojazd>103</idPojazd>
-			<idWypozyczajacy>11</idWypozyczajacy>
-			<data>2014-08-14</data>
-		</wyjazd>
-		<wyjazd>
-			<id>102</id>
-			<idPojazd>102</idPojazd>
-			<idWypozyczajacy>12</idWypozyczajacy>
-			<data>2013-07-12</data>
-		</wyjazd>
-	</Wyjazdy>
+                <odpowiedz>
+                    <tresc>Tak lubie grafike!</tresc>
+                    <kategoria>
+                        <id>2</id>
+                        <punkty>20</punkty>
+                    </kategoria>
+                    <kategoria>
+                        <id>5</id>
+                        <punkty>-10</punkty>
+                    </kategoria>
+                </odpowiedz>
 
-</Hangar>
+                <odpowiedz>
+                    <tresc>Tak lubie grafike 3D.</tresc>
+                    <kategoria>
+                        <id>1</id>
+                        <punkty>15</punkty>
+                    </kategoria>
+                    <kategoria>
+                        <id>3</id>
+                        <punkty>10</punkty>
+                    </kategoria>
+                </odpowiedz>
+
+                <odpowiedz>
+                    <tresc>Lubie tylko MS PAINT.</tresc>
+                    <kategoria>
+                        <id>6</id>
+                        <punkty>-30</punkty>
+                    </kategoria>
+                </odpowiedz>
+
+            </odpowiedzi>
+    </pytanie>
+    <pytanie>
+        <id>102</id>
+            <typ>0</typ>
+            <czy_waga>true</czy_waga>
+            <obrazek>C:/twojaStara/obrazek2.jpg</obrazek>
+            <tresc>"Czy interfejs jest?"</tresc>
+            <odpowiedzi>
+
+                <odpowiedz>
+                    <tresc>Tak lubie pomidory!</tresc>
+                    <kategoria>
+                        <id>3</id>
+                        <punkty>10</punkty>
+                    </kategoria>
+                </odpowiedz>
+
+                <odpowiedz>
+                    <tresc>Twoja Stara nie ma mamby.</tresc>
+                    <kategoria>
+                        <id>1</id>
+                        <punkty>5</punkty>
+                    </kategoria>
+                    <kategoria>
+                        <id>4</id>
+                        <punkty>50</punkty>
+                    </kategoria>
+                    <kategoria>
+                        <id>6</id>
+                        <punkty>-7</punkty>
+                    </kategoria>
+                </odpowiedz>
+
+                <odpowiedz>
+                    <tresc>Tylko dla kisielu.</tresc>
+                    <kategoria>
+                        <id>6</id>
+                        <punkty>-20</punkty>
+                    </kategoria>
+                </odpowiedz>
+
+            </odpowiedzi>
+    </pytanie>
+</Pytania>
+                
+                
+                
+                
+		

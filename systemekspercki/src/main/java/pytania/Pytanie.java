@@ -14,10 +14,11 @@ public class Pytanie {
     @Id
     @GeneratedValue
     private int id;        //przechowuje unikalne id pytania
-    private String tresc=null;   //przecjowuje treœæ pytania
+    private String tresc=null;  //przecjowuje treœæ pytania
     private String obrazek=null;    //opcjonalnie przechowuje adres obrazka do wyœwietlenia przy pytaniu
-    private static int licznik=0;  //zmienan do ustalanai id;
-    private Odpowiedzi odpowiedzi=null;  //przechowuje mozliwe odpowiedzi
+    private static int licznik=0;   //zmienan do ustalanai id;
+    private boolean wagaPytania=false;  //czy wyœwietliæ pytanie o wagê pytania
+    private Odpowiedzi odpowiedzi=null; //przechowuje mozliwe odpowiedzi
     
     public Pytanie(){
         id = licznik;
@@ -98,6 +99,20 @@ public class Pytanie {
      */
     public void setOdpowiedzi(Odpowiedzi odpowiedzi) {
         this.odpowiedzi = odpowiedzi;
+    }
+
+    /**
+     * @return the wagaPytania
+     */
+    public boolean isWagaPytania() {
+        return wagaPytania;
+    }
+
+    /**
+     * @param wagaPytania the wagaPytania to set
+     */
+    public void setWagaPytania(boolean wagaPytania) {
+        this.wagaPytania = wagaPytania;
     }
 }
 

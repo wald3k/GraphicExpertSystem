@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Freeman
  */
 public class Quiz extends ArrayList<Pytanie>{
+       
     
 /**
  * znajduje w quizie pytanie o podanym id.

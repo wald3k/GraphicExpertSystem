@@ -11,6 +11,6 @@ import java.util.ArrayList;
  *
  * @author Freeman
  */
-class Odpowiedzi extends ArrayList<Odpowiedz>{
+public class Odpowiedzi extends ArrayList<Odpowiedz>{
     
 }

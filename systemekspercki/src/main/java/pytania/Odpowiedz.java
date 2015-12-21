@@ -9,7 +9,7 @@ package pytania;
  *
  * @author Freeman
  */
-class Odpowiedz {
+public class Odpowiedz {
     private String tresc=null;
     private Kryteria kryteria=null;
     

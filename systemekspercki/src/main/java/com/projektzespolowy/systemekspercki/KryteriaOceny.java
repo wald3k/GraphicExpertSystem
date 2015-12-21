@@ -20,6 +20,11 @@ public class KryteriaOceny extends ArrayList<KryteriumOceny>{
         return null;
     }
     
+//    kryteria           zdefiniiowane   quiz
+//    dodatki                 5           10
+//    cena                    10          10
+//    interfejs_prostota      1           7
+    
     
     
     /**

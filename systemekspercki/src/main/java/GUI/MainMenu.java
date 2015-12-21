@@ -7,6 +7,11 @@ package GUI;
 
 import java.awt.event.WindowEvent;
 import GUI.okna.*;
+import XLMParser.XMLReader;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import pytania.Quiz;
 
 /**
  *
@@ -38,6 +43,11 @@ public class MainMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Rozpocznij Quiz");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         oProgramieButton.setText("O programie");
         oProgramieButton.addActionListener(new java.awt.event.ActionListener() {
@@ -61,16 +71,17 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(oProgramieButton)
-                    .addComponent(exitButton))
-                .addGap(44, 337, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(oProgramieButton)
+                            .addComponent(exitButton))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,6 +108,19 @@ public class MainMenu extends javax.swing.JFrame {
         this.setVisible(false);
         OProgramieJFrame oprogJFrame = new OProgramieJFrame("o programie",this);
     }//GEN-LAST:event_oProgramieButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String filePath = "C:\\Users\\Freeman\\Documents\\graphicexpert\\systemekspercki\\src\\main\\java\\Resources\\pytania.xml";
+        XMLReader xmlReader = new XMLReader();
+        Quiz quiz = new Quiz();
+        
+        try {
+            quiz = xmlReader.extractPytania(filePath);
+            quiz.wypisz();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
