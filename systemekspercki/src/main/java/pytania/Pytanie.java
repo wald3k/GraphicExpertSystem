@@ -1,121 +1,97 @@
-//package pytania;
-//
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-//import javax.persistence.GeneratedValue;
-//
-///**
-// * Przchowuje pojedyñcze pytanie quizu.
-// * 
-// * @author Twoja Stara
-// */
-//@Entity
-//public class Pytanie {
-//    @Id
-//    @GeneratedValue
-//    private int id;        //przechowuje unikalne id pytania
-//    private String tresc=null;  //przecjowuje treœæ pytania
-//    private String obrazek=null;    //opcjonalnie przechowuje adres obrazka do wyœwietlenia przy pytaniu
-//    private static int licznik=0;   //zmienan do ustalanai id;
-//    private boolean wagaPytania=false;  //czy wyœwietliæ pytanie o wagê pytania
-//    private Odpowiedzi odpowiedzi=null; //przechowuje mozliwe odpowiedzi
-//    
-//    public Pytanie(){
-//        id = licznik;
+package pytania;
+
+
+
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+/**
+ * Przchowuje pojedyñcze pytanie quizu.
+ * 
+ * @author Twoja Stara
+ */
+@Entity
+public class Pytanie {
+    //public static int licznik=0;
+    @Id
+    //@GeneratedValue
+    @Column(name="idPytania")
+    private int idPytania;        //przechowuje unikalne id pytania
+    @Column(name="tresc")
+    private String tresc;
+    @Column(name="kategoria")
+    private String kategoria;
+    @Column(name="zaznaczonaOdpowiedz")//1 dla tak 2 dla nie 0 jesli nie jest zaznaczona
+    private int zaznaczonaOdpowiedz;
+    @Column(name="wagaPytania")
+    private double wagaPytania;//malowazne 0.5 wazne 1 bardzo wazne 1.5
+    @OneToMany
+    @Column(name="listaOdpowiedzi")    
+    private List<Odpowiedz> listaOdpowiedzi;//Dla hibernate trzeba uzywac List a nie ArrayList    
+    
+    public Pytanie(){
 //        licznik++;
-//    }
-//    
-//    public Pytanie(String tresc){
-//        id = licznik;
-//        licznik++;
-//        this.tresc=tresc;
-//    }
-//
-//    
-//    
-//    @Override
-//    public String toString(){
-//        String str = new String();
-//        str +="id: "+id;
-//        
-//        if(tresc != null){
-//            str +=" tresc: "+tresc.subSequence(0, 10)+"..."; 
-//        }
-//        if(obrazek != null){
-//            str +=" img: "+obrazek.subSequence(0, 10)+"..."; 
-//        }
-//        if(odpowiedzi != null){
-//           str +=" ilosc odp.: "+odpowiedzi.size();
-//        }
-//        //for(Odpowiedz o: this.odpowiedzi){
-//        //    str +=" ; "+o.toString();
-//        //}
-//        
-//        return str;
-//    }
-//    
-//    
-//    
-//    
-//    
-//    
-//    public int getId() {
-//        return id;
-//    }
-//
-//    //niewiem czy setId jest dobrym pomys³em, jako ¿e id powinno pozostawaæ niezmienne
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getTresc() {
-//        return tresc;
-//    }
-//
-//    public void setTresc(String tresc) {
-//        this.tresc = tresc;
-//    }    
-//
-//    /**
-//     * @return the obrazek
-//     */
-//    public String getObrazek() {
-//        return obrazek;
-//    }
-//
-//    /**
-//     * @param obrazek the obrazek to set
-//     */
-//    public void setObrazek(String obrazek) {
-//        this.obrazek = obrazek;
-//    }
-//
-//    /**
-//     * @return the odpowiedzi
-//     */
-//    public Odpowiedzi getOdpowiedzi() {
-//        return odpowiedzi;
-//    }
-//
-//    /**
-//     * @param odpowiedzi the odpowiedzi to set
-//     */
-//    public void setOdpowiedzi(Odpowiedzi odpowiedzi) {
-//        this.odpowiedzi = odpowiedzi;
-//    }
-//
-//    /**
-//     * @return the wagaPytania
-//     */
-//    public boolean isWagaPytania() {
-//        return wagaPytania;
-//    }
-//
-//    /**
-//     * @param wagaPytania the wagaPytania to set
-//     */
-//    public void setWagaPytania(boolean wagaPytania) {
-//        this.wagaPytania = wagaPytania;
-//    }
-//}
-//
+//        this.idPytania=licznik;
+        
+    }
+    public Pytanie(int idPytania){
+        this.idPytania=idPytania;
+    }
+    public int getIdPytania() {
+        return idPytania;
+    }
+
+    public void setIdPytania(int idPytania) {
+        this.idPytania = idPytania;
+    }
+
+    public String getTresc() {
+        return tresc;
+    }
+
+    public void setTresc(String tresc) {
+        this.tresc = tresc;
+    }   
+
+    public List<Odpowiedz> getListaOdpowiedzi() {
+        return listaOdpowiedzi;
+    }
+
+    public void setListaOdpowiedzi(List<Odpowiedz> listaOdpowiedzi) {
+        this.listaOdpowiedzi = listaOdpowiedzi;
+    }
+
+    public int getZaznaczonaOdpowiedz() {
+        return zaznaczonaOdpowiedz;
+    }
+
+    public void setZaznaczonaOdpowiedz(int zaznaczonaOdpowiedz) {
+        this.zaznaczonaOdpowiedz = zaznaczonaOdpowiedz;
+    }
+
+    public double getWagaPytania() {
+        return wagaPytania;
+    }
+
+    public void setWagaPytania(double wagaPytania) {
+        this.wagaPytania = wagaPytania;
+    }
+
+    public String getKategoria() {
+        return kategoria;
+    }
+
+    public void setKategoria(String kategoria) {
+        this.kategoria = kategoria;
+    }
+
+    
+    
+}
+

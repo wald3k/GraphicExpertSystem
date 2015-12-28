@@ -5,57 +5,57 @@
  */
 package pytania;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author Freeman
  */
+@Entity
 public class Odpowiedz {
-    private String tresc=null;
-    private Kryteria kryteria=null;
+    @Id
+    @GeneratedValue
+    private int idOdpowiedzi;        //przechowuje unikalne id pytania
+    private String tresc;
+    private int idPytania;
     
     
-    @Override
-    public String toString(){
-        String str = new String();
-        str +="tresc: "+tresc.subSequence(0, 16)+"...";
-        
-        if(kryteria != null){
-            str +=" ilosc kryterii: "+kryteria.size(); 
-        }
-        
-        return str;
+    public Odpowiedz(int idPytania, String trescPytania){
+        this.idPytania = idPytania;
+        this.tresc = trescPytania;
     }
-    
-    
-    
 
-    /**
-     * @return the tresc
-     */
+   
+
+    public int getIdOdpowiedzi() {
+        return idOdpowiedzi;
+    }
+
+    public void setIdOdpowiedzi(int idOdpowiedzi) {
+        this.idOdpowiedzi = idOdpowiedzi;
+    }
+
     public String getTresc() {
         return tresc;
     }
 
-    /**
-     * @param tresc the tresc to set
-     */
     public void setTresc(String tresc) {
         this.tresc = tresc;
     }
 
-    /**
-     * @return the kryteria
-     */
-    public Kryteria getKryteria() {
-        return kryteria;
+    public int getIdPytania() {
+        return idPytania;
     }
 
-    /**
-     * @param kryteria the kryteria to set
-     */
-    public void setKryteria(Kryteria kryteria) {
-        this.kryteria = kryteria;
+    public void setIdPytania(int idPytania) {
+        this.idPytania = idPytania;
     }
+
     
     
+    
+   
 }

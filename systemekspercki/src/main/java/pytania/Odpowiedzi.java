@@ -6,11 +6,28 @@
 package pytania;
 
 import java.util.ArrayList;
+import javax.persistence.Embeddable;
 
 /**
  *
  * @author Freeman
  */
-public class Odpowiedzi extends ArrayList<Odpowiedz>{
+@Embeddable
+public class Odpowiedzi {
+    private ArrayList<Odpowiedz> odpowiedzi;
+
+    public Odpowiedzi(){
+        this.odpowiedzi = new ArrayList<Odpowiedz>();
+    }
+    public ArrayList<Odpowiedz> getOdpowiedzi() {
+        return odpowiedzi;
+    }
+
+    public void setOdpowiedzi(ArrayList<Odpowiedz> odpowiedzi) {
+        this.odpowiedzi = odpowiedzi;
+    }
     
+    public void dodajOdpowiedz(Odpowiedz odp){
+        odpowiedzi.add(odp);
+    }
 }

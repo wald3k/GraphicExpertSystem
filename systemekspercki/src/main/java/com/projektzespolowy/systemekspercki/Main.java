@@ -1,38 +1,70 @@
 package com.projektzespolowy.systemekspercki;
 
 //import pytania.Pytanie;
+
 import program.Program;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import pytania.Kategoria;
+import pytania.Ranking;
+import zarzadzanieEncjami.EManager;
 
 public class Main {
 
     public static void main(String[] args) {
-		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-                
-//                Pytanie pytanie = new Pytanie();
-//                pytanie.setTresc("Tresc z netbeansa!");
-//                Pytanie pytanie2 = new Pytanie();
-//                pytanie2.setTresc("Tresc pytania 2");
-//                Pytanie pytanie3 = new Pytanie();
-//                pytanie3.setTresc("Tresc pytania 3");
-                  Program program1 = new Program();
-                  program1.setNazwa("3ds Max");
-                  program1.setCena(199.59);
-                  program1.setPktCena(5);
-                  program1.setPktTrudnosc_nauki(9);
-                
-                entityManager.getTransaction().begin();
-//                entityManager.persist(pytanie);                
-//                entityManager.persist(pytanie2);                
-//                entityManager.persist(pytanie3);  
-                entityManager.persist(program1);
-                entityManager.getTransaction().commit(); 
-                
-		entityManager.close();
-		entityManagerFactory.close();
-    }
+//        ManagerPytan managerPytan = new ManagerPytan();
+//        ManagerProgramow managerProgramow = new ManagerProgramow();        
+//        managerPytan.dodajPytanieDoBazy();
+//        managerProgramow.dodajProgramDoBazy();
+//        
+//        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
+//        EntityManager entityManager = entityManagerFactory.createEntityManager();
+//        
+//        Kategoria kategoria = new Kategoria();
+//        kategoria.setNazwa("Sculpt 3d");
+//        Ranking ranking = new Ranking();
+//        ranking.setKategoria(kategoria);
+//        ranking.setPunkty(50);
 
+
+
+//        Kategoria kategoria = new Kategoria();
+//        Ranking ranking = new Ranking();
+//        Program program = new Program();
+//        kategoria.setNazwa("Sculpt3d");
+//        ranking.setPunkty(10);
+//        program.setNazwa("3ds Max");
+//        program.setCena(1700);
+//        program.setOpisProgramu("Jeden z najpopularniejszych programów. Bardzo szeroki zasób materia³ów efukacyjnych. \nBardzo dobra dokumentacja");
+//        program.setLiczba_tutoriali(3570000);
+//        program.setLiczba_ofert_pracy(744000);
+//        ranking.setProgram(program);
+//        ranking.setKategoria(kategoria);
+//        
+//
+//        entityManager.getTransaction().begin();
+//        entityManager.persist(program);
+//        entityManager.persist(kategoria);
+//        entityManager.persist(ranking);
+//        
+//        entityManager.getTransaction().commit(); 
+//
+//        entityManager.close();
+//        entityManagerFactory.close();
+
+        EManager eManager= new EManager();
+        eManager.dodajKategorieDoBazy(eManager.getEntityManager());
+        eManager.dodajProgramyDoBazy(eManager.getEntityManager());
+        eManager.dodajRankingDoBazy(eManager.getEntityManager());
+        eManager.close();
+        
+        
+        //obliczenie wynikow
+//        Wyniki wyniki = new Wyniki();
+//        Wynik wynik1=new Wynik(1);
+//        wyniki.dodajWynikDoListy(wynik1);
+//        wyniki.pobierzOdpowiedzNaPytanie(1);
+        
+    }	
 }
