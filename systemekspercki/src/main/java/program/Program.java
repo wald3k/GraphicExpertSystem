@@ -23,9 +23,16 @@ public class Program {
     private int id;        //przechowuje unikalne id pytania
     private String nazwa;
     private double cena;
+    private String systemy;
+    private int min_ram;
+    private int zal_ram;
+    private int hdd;
     private int liczba_tutoriali;
     private int liczba_ofert_pracy;
     private String opisProgramu;
+    private String link;
+    
+    
     @OneToOne(mappedBy = "program")
     private Ranking ranking;
 
@@ -84,6 +91,47 @@ public class Program {
     public void setRanking(Ranking ranking) {
         this.ranking = ranking;
     }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getSystemy() {
+        return systemy;
+    }
+
+    public void setSystemy(String systemy) {
+        this.systemy = systemy;
+    }
+
+    public int getMin_ram() {
+        return min_ram;
+    }
+
+    public void setMin_ram(int min_ram) {
+        this.min_ram = min_ram;
+    }
+
+    public int getZal_ram() {
+        return zal_ram;
+    }
+
+    public void setZal_ram(int zal_ram) {
+        this.zal_ram = zal_ram;
+    }
+
+    public int getHdd() {
+        return hdd;
+    }
+
+    public void setHdd(int hdd) {
+        this.hdd = hdd;
+    }
+    
     
 
 }

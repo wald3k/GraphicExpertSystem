@@ -20,11 +20,13 @@ public class Odpowiedz {
     @GeneratedValue
     private int idOdpowiedzi;        //przechowuje unikalne id pytania
     private String tresc;
-    private int idPytania;
     
     
-    public Odpowiedz(int idPytania, String trescPytania){
-        this.idPytania = idPytania;
+    public Odpowiedz(){
+        
+    }
+    public Odpowiedz(String trescPytania){
+        
         this.tresc = trescPytania;
     }
 
@@ -46,13 +48,7 @@ public class Odpowiedz {
         this.tresc = tresc;
     }
 
-    public int getIdPytania() {
-        return idPytania;
-    }
-
-    public void setIdPytania(int idPytania) {
-        this.idPytania = idPytania;
-    }
+    
 
     
     

@@ -2,11 +2,15 @@ package com.projektzespolowy.systemekspercki;
 
 //import pytania.Pytanie;
 
+import java.util.ArrayList;
+import java.util.List;
 import program.Program;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import pytania.Kategoria;
+import pytania.Odpowiedz;
+import pytania.Pytanie;
 import pytania.Ranking;
 import zarzadzanieEncjami.EManager;
 
@@ -57,7 +61,11 @@ public class Main {
         eManager.dodajKategorieDoBazy(eManager.getEntityManager());
         eManager.dodajProgramyDoBazy(eManager.getEntityManager());
         eManager.dodajRankingDoBazy(eManager.getEntityManager());
-        eManager.close();
+        eManager.dodajPytaniaDoBazy(eManager.getEntityManager());        
+        eManager.close();      
+        
+       
+        
         
         
         //obliczenie wynikow

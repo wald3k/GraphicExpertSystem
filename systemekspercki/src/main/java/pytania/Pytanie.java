@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * Przchowuje pojedyñcze pytanie quizu.
@@ -18,27 +19,24 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Pytanie {
-    //public static int licznik=0;
     @Id
-    //@GeneratedValue
+    @GeneratedValue
     @Column(name="idPytania")
     private int idPytania;        //przechowuje unikalne id pytania
     @Column(name="tresc")
     private String tresc;
-    @Column(name="kategoria")
-    private String kategoria;
-    @Column(name="zaznaczonaOdpowiedz")//1 dla tak 2 dla nie 0 jesli nie jest zaznaczona
-    private int zaznaczonaOdpowiedz;
+    @Column(name="kategoria")    
+    private int kategoria;
+    //@Column(name="zaznaczonaOdpowiedz")//1 dla tak 2 dla nie 0 jesli nie jest zaznaczona
+    @OneToOne
+    private Odpowiedz zaznaczonaOdpowiedz;
     @Column(name="wagaPytania")
     private double wagaPytania;//malowazne 0.5 wazne 1 bardzo wazne 1.5
     @OneToMany
     @Column(name="listaOdpowiedzi")    
     private List<Odpowiedz> listaOdpowiedzi;//Dla hibernate trzeba uzywac List a nie ArrayList    
     
-    public Pytanie(){
-//        licznik++;
-//        this.idPytania=licznik;
-        
+    public Pytanie(){        
     }
     public Pytanie(int idPytania){
         this.idPytania=idPytania;
@@ -67,11 +65,11 @@ public class Pytanie {
         this.listaOdpowiedzi = listaOdpowiedzi;
     }
 
-    public int getZaznaczonaOdpowiedz() {
+    public Odpowiedz getZaznaczonaOdpowiedz() {
         return zaznaczonaOdpowiedz;
     }
 
-    public void setZaznaczonaOdpowiedz(int zaznaczonaOdpowiedz) {
+    public void setZaznaczonaOdpowiedz(Odpowiedz zaznaczonaOdpowiedz) {
         this.zaznaczonaOdpowiedz = zaznaczonaOdpowiedz;
     }
 
@@ -83,12 +81,28 @@ public class Pytanie {
         this.wagaPytania = wagaPytania;
     }
 
-    public String getKategoria() {
+    public int getKategoria() {
         return kategoria;
     }
 
-    public void setKategoria(String kategoria) {
+    public void setKategoria(int kategoria) {
         this.kategoria = kategoria;
+    }
+    public void wypiszDostepneOdpowiedzi(){
+        for(Odpowiedz o:listaOdpowiedzi){
+            System.out.println(o.getTresc());
+        }
+    }
+    public boolean wybierzOdp(int numerWybranejOdpowiedzi){
+        int licznik=1;
+        for(Odpowiedz o:listaOdpowiedzi){
+            if(licznik==numerWybranejOdpowiedzi){
+                this.setZaznaczonaOdpowiedz(o);
+                return true;//udalo sie zaznaczyc odpowiedy
+            }
+            licznik++;
+        }
+        return false;//nie udalo sie wzbrac odpowiedyi
     }
 
     

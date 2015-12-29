@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import program.Program;
 import pytania.Kategoria;
+import pytania.Odpowiedz;
+import pytania.Pytanie;
 import pytania.Ranking;
 
 
@@ -28,27 +30,34 @@ public class EManager {
         this.entityManager.close();
         this.entityManagerFactory.close();
     }
-    public void dodajProgramyDoBazy(EntityManager entityManager) {
-      
+    public void dodajProgramyDoBazy(EntityManager entityManager) {      
+        dodajProgramDoBazy("Blender",0,"Windows/Mac/Linux",2,8,2000,3560000,820000,"opis","link");
+        dodajProgramDoBazy("SketchUP",695,"Windows",4,8,500,1370000,1010000,"opis","link");
+        dodajProgramDoBazy("SolidWorks",1295,"Windows",4,8,500,985000,606000,"opis","link");
+        dodajProgramDoBazy("AutoCad",1772,"Windows",2,4,6000,2180000,1620000,"opis","link");
+        dodajProgramDoBazy("AutoCadLT",382,"Windows",2,3,4000,475000,478000,"opis","link");
+        dodajProgramDoBazy("Maya",1700,"Windows/Mac/Linux",4,8,4000,3590000,1910000,"opis","link");
+        dodajProgramDoBazy("3ds Max",1700,"Windows",4,8,6000,3570000,74400,"opis","link");
+        dodajProgramDoBazy("Inventor",3544,"Windows/Mac",8,16,100000,1370000,1270000,"opis","link");
+        dodajProgramDoBazy("Tinkercad",3544,"Windows/Mac-Linux",2,4,0,96600,112000,"Aplikacja przegl¹darkowa","link");
+        dodajProgramDoBazy("Mudbox",120,"Windows/Mac/Linux",4,8,1000,540000,317,"Do sculptingu","link");
+    }
+    public void dodajProgramDoBazy(String nazwa, int cena,String systemy,
+            int min_ram,int zal_ram, int hdd, int l_tutoriali,
+            int l_ofert_pracy,String opis, String link){
         Program program1 = new Program();        
-        program1.setNazwa("3ds Max");
-        program1.setCena(1700);
-        program1.setOpisProgramu("Jeden z najpopularniejszych programów. Bardzo szeroki zasób materia³ów efukacyjnych. \nBardzo dobra dokumentacja");
-        program1.setLiczba_tutoriali(3570000);
-        program1.setLiczba_ofert_pracy(744000);    
-        
-        Program program2 = new Program();        
-        program2.setNazwa("Maya");
-        program2.setCena(1701);
-        program2.setOpisProgramu("Maya, drugi najpopuparniejszy program.");
-        program2.setLiczba_tutoriali(2000000);
-        program2.setLiczba_ofert_pracy(7321340);  
-        
+        program1.setNazwa(nazwa);
+        program1.setCena(cena);
+        program1.setSystemy(systemy);
+        program1.setMin_ram(min_ram);
+        program1.setZal_ram(zal_ram);
+        program1.setHdd(hdd);        
+        program1.setLiczba_tutoriali(l_tutoriali);
+        program1.setLiczba_ofert_pracy(l_ofert_pracy);
+        program1.setOpisProgramu(opis);
+        program1.setLink(link);
         listaProgramow.add(program1);
-        listaProgramow.add(program2);
         entityManager.persist(program1);
-        entityManager.persist(program2);
-              
     }
     public void dodajKategorieDoBazy(EntityManager entityManager ){
         Kategoria kategoria1 = new Kategoria();
@@ -134,6 +143,37 @@ public class EManager {
     public EntityManager getEntityManager() {
         return entityManager;
     }
+    public void dodajPytaniaDoBazy(EntityManager entityManager){        
+        dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki 3d?",1,"tak","nie");
+        dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki Sculpt?",2,"tak","nie");
+        dodajPytanieDoBazy("Czy jesteœ gotów przeznaczyæ na program wiêcej ni¿ 500$?",3,"tak","nie");
+        dodajPytanieDoBazy("Czy dopuszczasz licencjê czasow¹",4,"tak","nie");
+        dodajPytanieDoBazy("Czy mia³eœ wczeœniej stycznoœæ z oprogramowaniem do grafiki",5,"tak","nie");
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Windows",6,"tak","nie");
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Mac OS",7,"tak","nie");
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Linux",8,"tak","nie");
+        dodajPytanieDoBazy("Podaj minimaln¹ Twoim zdaniem iloœæ ramu jak¹ powinien wymagaæ program",9,"tak","nie");
+        dodajPytanieDoBazy("Podaj maksymaln¹ Twoim zdaniem iloœæ ramu jak¹ powinien wymagaæ program",10,"tak","nie");
+        dodajPytanieDoBazy("Czy posiadasz przynajmniej 5gb wolnego miejsca na dysku?",11,"tak","nie");
+        dodajPytanieDoBazy("Czy zaakceptowa³byœ uproszczony interfejs wzglêdem funkcjonalnoœci?",12,"tak","nie");
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z tutoriali?",13,"tak","nie");
+        dodajPytanieDoBazy("Czy zamierzasz pracowaæ jako grafik 3d?",14,"tak","nie");
+        
+    }
+    public void dodajPytanieDoBazy(String tresc,int kategoria,String odp1,String odp2){
+        Pytanie pytanie1 = new Pytanie();
+        pytanie1.setKategoria(kategoria);
+        pytanie1.setTresc(tresc);
+        List<Odpowiedz> lista1 = new ArrayList<Odpowiedz>();
+        Odpowiedz o1 = new Odpowiedz(odp1);
+        Odpowiedz o2 = new Odpowiedz(odp2);
+        lista1.add(o1);
+        lista1.add(o2);
+        
+        entityManager.persist(pytanie1);
+        entityManager.persist(o1);
+        entityManager.persist(o2);
+    }
+        
     
-
 }
