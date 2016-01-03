@@ -27,16 +27,18 @@ public class Pytanie {
     private String tresc;
     @Column(name="kategoria")    
     private int kategoria;
+    
+    @Column(name="wagaPytania")
+    private double wagaPytania;//malowazne 0.5 wazne 1 bardzo wazne 1.5
+    @OneToMany 
+    @JoinColumn(name="Id_pytania")
+    private List<Odpowiedz> listaOdpowiedzi;//Dla hibernate trzeba uzywac List a nie ArrayList    
     //@Column(name="zaznaczonaOdpowiedz")//1 dla tak 2 dla nie 0 jesli nie jest zaznaczona
     @OneToOne
     private Odpowiedz zaznaczonaOdpowiedz;
-    @Column(name="wagaPytania")
-    private double wagaPytania;//malowazne 0.5 wazne 1 bardzo wazne 1.5
-    @OneToMany
-    @Column(name="listaOdpowiedzi")    
-    private List<Odpowiedz> listaOdpowiedzi;//Dla hibernate trzeba uzywac List a nie ArrayList    
     
-    public Pytanie(){        
+    public Pytanie(){    
+        
     }
     public Pytanie(int idPytania){
         this.idPytania=idPytania;
@@ -63,15 +65,7 @@ public class Pytanie {
 
     public void setListaOdpowiedzi(List<Odpowiedz> listaOdpowiedzi) {
         this.listaOdpowiedzi = listaOdpowiedzi;
-    }
-
-    public Odpowiedz getZaznaczonaOdpowiedz() {
-        return zaznaczonaOdpowiedz;
-    }
-
-    public void setZaznaczonaOdpowiedz(Odpowiedz zaznaczonaOdpowiedz) {
-        this.zaznaczonaOdpowiedz = zaznaczonaOdpowiedz;
-    }
+    }    
 
     public double getWagaPytania() {
         return wagaPytania;
@@ -104,8 +98,15 @@ public class Pytanie {
         }
         return false;//nie udalo sie wzbrac odpowiedyi
     }
-
     
+    
+    public Odpowiedz getZaznaczonaOdpowiedz() {
+        return zaznaczonaOdpowiedz;
+    }
+
+    public void setZaznaczonaOdpowiedz(Odpowiedz zaznaczonaOdpowiedz) {
+        this.zaznaczonaOdpowiedz = zaznaczonaOdpowiedz;
+    }   
     
 }
 

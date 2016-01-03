@@ -5,7 +5,6 @@
  */
 package pytania;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,21 +15,19 @@ import javax.persistence.Id;
  */
 @Entity
 public class Odpowiedz {
+
     @Id
     @GeneratedValue
     private int idOdpowiedzi;        //przechowuje unikalne id pytania
     private String tresc;
-    
-    
-    public Odpowiedz(){
-        
-    }
-    public Odpowiedz(String trescPytania){
-        
-        this.tresc = trescPytania;
+
+    public Odpowiedz() {
     }
 
-   
+    public Odpowiedz(String trescPytania) {
+
+        this.tresc = trescPytania;
+    }
 
     public int getIdOdpowiedzi() {
         return idOdpowiedzi;
@@ -48,10 +45,4 @@ public class Odpowiedz {
         this.tresc = tresc;
     }
 
-    
-
-    
-    
-    
-   
 }

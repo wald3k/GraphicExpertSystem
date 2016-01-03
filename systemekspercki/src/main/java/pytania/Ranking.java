@@ -5,9 +5,11 @@
  */
 package pytania;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import program.Program;
 
@@ -21,9 +23,11 @@ public class Ranking {
     @GeneratedValue    
     private int id;        //przechowuje unikalne id pytania
     @OneToOne
+    @JoinColumn(name = "Kategoria_ID")
     private Kategoria kategoria;
     @OneToOne
-    private Program program;
+    @JoinColumn(name = "Program_ID")
+    private Program progr;
     private int punkty;
 
     public int getId() {
@@ -47,11 +51,11 @@ public class Ranking {
     }
 
     public Program getProgram() {
-        return program;
+        return progr;
     }
 
     public void setProgram(Program program) {
-        this.program = program;
+        this.progr = program;
     }
 
     public void setPunkty(int punkty) {

@@ -13,10 +13,10 @@ import pytania.Pytanie;
  */
 public class Wynik {
     private int idProgramu;
-    private int wynik;
+    private double wynik;
     public Wynik(int id){
         this.idProgramu=id;
-        this.wynik=0;
+        this.wynik=0.0;
     }
 
     public int getIdProgramu() {
@@ -27,11 +27,11 @@ public class Wynik {
         this.idProgramu = idProgramu;
     }
 
-    public int getWynik() {
+    public double getWynik() {
         return wynik;
     }
 
-    public void setWynik(int wynik) {
+    public void setWynik(double wynik) {
         this.wynik = wynik;
     }
     

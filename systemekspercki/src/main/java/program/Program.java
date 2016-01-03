@@ -5,6 +5,7 @@
  */
 package program;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -29,12 +30,10 @@ public class Program {
     private int hdd;
     private int liczba_tutoriali;
     private int liczba_ofert_pracy;
+    @Column( length = 100000 )
     private String opisProgramu;
     private String link;
     
-    
-    @OneToOne(mappedBy = "program")
-    private Ranking ranking;
 
     public int getId() {
         return id;
@@ -82,14 +81,6 @@ public class Program {
 
     public void setOpisProgramu(String opisProgramu) {
         this.opisProgramu = opisProgramu;
-    }
-
-    public Ranking getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(Ranking ranking) {
-        this.ranking = ranking;
     }
 
     public String getLink() {

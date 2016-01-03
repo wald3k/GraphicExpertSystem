@@ -21,8 +21,6 @@ public class Kategoria {
     @GeneratedValue
     private int id;
     private String nazwa; 
-    @OneToOne(mappedBy = "kategoria")
-    private Ranking ranking;
 
     public String getNazwa() {
         return nazwa;
