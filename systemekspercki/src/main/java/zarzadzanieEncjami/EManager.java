@@ -181,33 +181,33 @@ public class EManager {
     }
 
     public void dodajPytaniaDoBazy(EntityManager entityManager) {
-        dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki 3d?", 1, "tak", "nie");
-        dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki Sculpt?", 2, "tak", "nie");
-        dodajPytanieDoBazy("Czy jesteœ gotów przeznaczyæ na program wiêcej ni¿ 500$?", 3, "tak", "nie");
-        dodajPytanieDoBazy("Czy dopuszczasz licencjê czasow¹", 4, "tak", "nie");
-        dodajPytanieDoBazy("Czy mia³eœ wczeœniej stycznoœæ z oprogramowaniem do grafiki", 5, "tak", "nie");
-        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Windows", 6, "tak", "nie");
-        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Mac OS", 7, "tak", "nie");
-        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Linux", 8, "tak", "nie");
-        dodajPytanieDoBazy("Podaj minimaln¹ Twoim zdaniem iloœæ ramu jak¹ powinien wymagaæ program", 9, "tak", "nie");
-        dodajPytanieDoBazy("Podaj maksymaln¹ Twoim zdaniem iloœæ ramu jak¹ powinien wymagaæ program", 10, "tak", "nie");
-        dodajPytanieDoBazy("Czy posiadasz przynajmniej 5gb wolnego miejsca na dysku?", 11, "tak", "nie");
-        dodajPytanieDoBazy("Czy zaakceptowa³byœ uproszczony interfejs wzglêdem funkcjonalnoœci?", 12, "tak", "nie");
-        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z tutoriali?", 13, "tak", "nie");
-        dodajPytanieDoBazy("Czy zamierzasz pracowaæ jako grafik 3d?", 14, "tak", "nie");
-
-        Pytanie tempPytanie = this.entityManager.find(Pytanie.class, 4);
-        tempPytanie.setZaznaczonaOdpowiedz(this.entityManager.find(Odpowiedz.class, 10));
+        dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki 3d?", 1, "tak",1, "nie",0);
+        dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki Sculpt?", 2, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy jesteœ gotów przeznaczyæ na program wiêcej ni¿ 500$?", 3, "tak",1, "nie",0);
+        dodajPytanieDoBazy("Czy dopuszczasz licencjê czasow¹", 4, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy mia³eœ wczeœniej stycznoœæ z oprogramowaniem do grafiki", 5, "tak",1, "nie",0);
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Windows", 6, "tak",1, "nie",0);
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Mac OS", 7, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z programu w systemie Linux", 8, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Podaj minimaln¹ Twoim zdaniem iloœæ ramu jak¹ powinien wymagaæ program", 9, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Podaj maksymaln¹ Twoim zdaniem iloœæ ramu jak¹ powinien wymagaæ program", 10, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy posiadasz przynajmniej 5gb wolnego miejsca na dysku?", 11, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy zaakceptowa³byœ uproszczony interfejs wzglêdem funkcjonalnoœci?", 12, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy bêdziesz korzysta³ z tutoriali?", 13, "tak",1,"nie",0);
+        dodajPytanieDoBazy("Czy zamierzasz pracowaæ jako grafik 3d?", 14, "tak",1,"nie",0);
+//          przykladowe ustawienie odpowiedzi
+//        Pytanie tempPytanie = this.entityManager.find(Pytanie.class, 4);
+//        tempPytanie.setZaznaczonaOdpowiedz(this.entityManager.find(Odpowiedz.class, 10));
 
     }
 
-    public void dodajPytanieDoBazy(String tresc, int kategoria, String odp1, String odp2) {
+    public void dodajPytanieDoBazy(String tresc, int kategoria, String odp1,double mnoznik1, String odp2,double mnoznik2) {
         Pytanie pytanie1 = new Pytanie();
         pytanie1.setKategoria(kategoria);
         pytanie1.setTresc(tresc);
         List<Odpowiedz> lista1 = new ArrayList<Odpowiedz>();
-        Odpowiedz o1 = new Odpowiedz(odp1);
-        Odpowiedz o2 = new Odpowiedz(odp2);
+        Odpowiedz o1 = new Odpowiedz(odp1,mnoznik1);
+        Odpowiedz o2 = new Odpowiedz(odp2,mnoznik2);
         lista1.add(o1);
         lista1.add(o2);
         pytanie1.setListaOdpowiedzi(lista1);

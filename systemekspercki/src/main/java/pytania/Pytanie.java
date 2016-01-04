@@ -38,10 +38,11 @@ public class Pytanie {
     private Odpowiedz zaznaczonaOdpowiedz;
     
     public Pytanie(){    
-        
+        this.wagaPytania=1.0;
     }
     public Pytanie(int idPytania){
         this.idPytania=idPytania;
+        this.wagaPytania=1.0;
     }
     public int getIdPytania() {
         return idPytania;

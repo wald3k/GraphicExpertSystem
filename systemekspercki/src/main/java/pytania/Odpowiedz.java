@@ -20,13 +20,15 @@ public class Odpowiedz {
     @GeneratedValue
     private int idOdpowiedzi;        //przechowuje unikalne id pytania
     private String tresc;
+    private double mnoznik;
 
     public Odpowiedz() {
     }
 
-    public Odpowiedz(String trescPytania) {
+    public Odpowiedz(String trescPytania, double mnoznik) {
 
         this.tresc = trescPytania;
+        this.mnoznik = mnoznik;
     }
 
     public int getIdOdpowiedzi() {
@@ -45,4 +47,13 @@ public class Odpowiedz {
         this.tresc = tresc;
     }
 
+    public double getMnoznik() {
+        return mnoznik;
+    }
+
+    public void setMnoznik(double mnoznik) {
+        this.mnoznik = mnoznik;
+    }
+
+    
 }

@@ -11,6 +11,7 @@ import javax.persistence.Persistence;
 import pytania.Kategoria;
 import pytania.Odpowiedz;
 import pytania.Pytanie;
+import pytania.Quiz;
 import pytania.Ranking;
 import wyniki.Analizator;
 import zarzadzanieEncjami.EManager;
@@ -20,12 +21,12 @@ public class Main {
     public static void main(String[] args) {
        
 
-        EManager eManager= new EManager();
-        eManager.dodajKategorieDoBazy(eManager.getEntityManager());
-        eManager.dodajProgramyDoBazy(eManager.getEntityManager());
-        eManager.dodajPytaniaDoBazy(eManager.getEntityManager()); 
-        eManager.dodajRankingDoBazy(eManager.getEntityManager());              
-        eManager.close();      
+//        EManager eManager= new EManager();
+//        eManager.dodajKategorieDoBazy(eManager.getEntityManager());
+//        eManager.dodajProgramyDoBazy(eManager.getEntityManager());
+//        eManager.dodajPytaniaDoBazy(eManager.getEntityManager()); 
+//        eManager.dodajRankingDoBazy(eManager.getEntityManager());              
+//        eManager.close();      
         
 //       
 //        Analizator analizator = new Analizator();
@@ -34,6 +35,6 @@ public class Main {
 //        analizator.policzWynikiDlaXPytania(2);
 //        analizator.policzWynikiDlaXPytania(3);
 //        analizator.close();
-        
+        Quiz quiz = new Quiz();
     }
 }
