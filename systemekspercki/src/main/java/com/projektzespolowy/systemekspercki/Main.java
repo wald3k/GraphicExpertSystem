@@ -20,7 +20,7 @@ public class Main {
 
     public static void main(String[] args) {
        
-
+//
 //        EManager eManager= new EManager();
 //        eManager.dodajKategorieDoBazy(eManager.getEntityManager());
 //        eManager.dodajProgramyDoBazy(eManager.getEntityManager());

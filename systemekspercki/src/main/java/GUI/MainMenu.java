@@ -112,11 +112,11 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String filePath = "C:\\Users\\Freeman\\Documents\\graphicexpert\\systemekspercki\\src\\main\\java\\Resources\\pytania.xml";
         XMLReader xmlReader = new XMLReader();
-        Quiz quiz = new Quiz();
+        //Quiz quiz = new Quiz();
         
         try {
-            quiz = xmlReader.extractPytania(filePath);
-            quiz.wypisz();
+            xmlReader.extractPytania2(filePath);
+            //quiz.wypisz();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
         }

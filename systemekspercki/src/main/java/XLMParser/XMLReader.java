@@ -249,65 +249,169 @@ public class XMLReader {
     
     ////////////////////////////////////////////////////////////////////////////////////
     
-    public Quiz extractPytania(String filePath) throws FileNotFoundException{
+//    public Quiz extractPytania(String filePath) throws FileNotFoundException{
+//
+//        Quiz quiz = new Quiz();
+//
+//        NodeList bigNod = this.initializeStaff(filePath, "Pytania"); //inicjalizacja g³ównego wê³a zawieraj¹cego pytania
+//
+//        if(bigNod.getLength()>0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
+//            
+//            NodeList nodeList = bigNod.item(0).getChildNodes();
+//
+//            for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
+//
+//                Node nod = nodeList.item(i);
+//                Pytanie pyt;
+//
+//                if(nod.getNodeType() == Node.ELEMENT_NODE){
+//                    
+//                    Element elem = (Element)nod;
+//
+//                    //int id = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
+//                    int typ = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
+//                    boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
+//                    String trescPytania = elem.getElementsByTagName("tresc").item(0).getTextContent();
+//                    
+//                    switch(typ){
+//                    case(0):
+//                        pyt = new PytaniePojedWyboru();
+//                        break;
+//                    case(1):
+//                        pyt = new PytaniePojedWyboru();
+//                        break;
+//                    case(2):
+//                        pyt = new PytaniePojedWyboru();
+//                        break;
+//                    case(3):
+//                        pyt = new PytaniePojedWyboru();
+//                        break;
+//                    default:
+//                        pyt = null;
+//                        System.out.println("ERROR! Z³y typ pytania podczas odczytu pliku XML!");
+//                        break;
+//                    }
+//                    
+//                    //pyt.setWagaPytania(czyWaga);
+//                    pyt.setTresc(trescPytania);
+//                   // pyt.setOdpowiedzi(extractOdpowiedzi(nod));
+//                    
+//
+//                    quiz.add(pyt);
+//                }
+//                
+//                
+//            }
+//
+//        return quiz;
+//        }
+//        else{
+//            return null;
+//        }
+//    }
+    
+    public void extractPytania2(String filePath) throws FileNotFoundException{
 
-        Quiz quiz = new Quiz();
+        //Quiz quiz = new Quiz();
 
-        NodeList bigNod = this.initializeStaff(filePath, "Pytania"); //inicjalizacja g³ównego wê³a zawieraj¹cego pytania
+        NodeList nodeList = this.initializeStaff2(filePath, "Pytania"); //inicjalizacja g³ównego wê³a zawieraj¹cego pytania
 
-        if(bigNod.getLength()>0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
+        if(nodeList.getLength()==0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
+           return;
+        }
+
+        for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
             
-            NodeList nodeList = bigNod.item(0).getChildNodes();
+            Node nod = nodeList.item(i);
+            //Pytanie pyt;
 
-            for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
-
-                Node nod = nodeList.item(i);
-                Pytanie pyt;
-
-                if(nod.getNodeType() == Node.ELEMENT_NODE){
+            if(nod.getNodeType() == Node.ELEMENT_NODE){
+                System.out.println("node name: "+nod.getNodeName());
+                System.out.println("node value: "+nod.getNodeValue());
+                //Element elem = (Element)nod;
+                //int idPytania = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
+                //int typPytania = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
+                //boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
+                //String trescPytania = elem.getElementsByTagName("tresc").item(0).getTextContent();
+                
+                NodeList childNodes = nod.getChildNodes();
+                for(int j=0; j<childNodes.getLength(); j++){
+                    Node cNode = childNodes.item(j);
                     
-                    Element elem = (Element)nod;
-
-                    //int id = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
-                    int typ = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
-                    boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
-                    String trescPytania = elem.getElementsByTagName("tresc").item(0).getTextContent();
-                    
-                    switch(typ){
-                    case(0):
-                        pyt = new PytaniePojedWyboru();
-                        break;
-                    case(1):
-                        pyt = new PytaniePojedWyboru();
-                        break;
-                    case(2):
-                        pyt = new PytaniePojedWyboru();
-                        break;
-                    case(3):
-                        pyt = new PytaniePojedWyboru();
-                        break;
-                    default:
-                        pyt = null;
-                        System.out.println("ERROR! Z³y typ pytania podczas odczytu pliku XML!");
-                        break;
+                    if(cNode instanceof Element){
+                        String nodeContent = cNode.getLastChild().getTextContent().trim();
+                        
+                        switch(cNode.getNodeName()){
+                            case "id":
+                                System.out.println("idPytania: "+nodeContent);
+                                break;
+                            case "typ":
+                                System.out.println("typPytania: "+nodeContent);
+                                break;
+                            case "czy_waga":
+                                System.out.println("czyWaga: "+nodeContent);
+                                break;
+                            case "obrazek":
+                                 System.out.println("obrazek: "+nodeContent);
+                                 break;
+                            case "tresc":
+                                 System.out.println("tresc: "+nodeContent);
+                                 break;
+                            case "odpowiedzi":
+                                 wczytajOdpowiedzi(cNode);
+                                 break;
+                        }
+                        
                     }
+                    System.out.println("------------------");
                     
-                    pyt.setWagaPytania(czyWaga);
-                    pyt.setTresc(trescPytania);
-                    pyt.setOdpowiedzi(extractOdpowiedzi(nod));
                     
-
-                    quiz.add(pyt);
                 }
-                
-                
+                    
+//                int idPytania = Integer.parseInt(nod.getAttributes().getNamedItem("id").getNodeValue());
+//                System.out.println("idPytania: "+idPytania);
+//                int typPytania = Integer.parseInt(nod.getAttributes().getNamedItem("typ").getNodeValue());
+//                System.out.println("typPytania: "+typPytania);
+//                double czyWaga = Double.parseDouble(nod.getAttributes().getNamedItem("czy_waga").getNodeValue());
+//                System.out.println("czyWaga: "+czyWaga);
+//                String obrazek = nod.getAttributes().getNamedItem("obrazek").getNodeValue();
+//                System.out.println("obrazek: "+obrazek);
+//                String trescPytania = nod.getAttributes().getNamedItem("tresc").getNodeValue();
+//                System.out.println("trescPytania: "+trescPytania);
+//                        
+//                switch(typPytania){
+//                case(0):
+//                    pyt = new PytaniePojedWyboru();
+//                    break;
+//                case(1):
+//                    pyt = new PytaniePojedWyboru();
+//                    break;
+//                case(2):
+//                    pyt = new PytaniePojedWyboru();
+//                    break;
+//                case(3):
+//                    pyt = new PytaniePojedWyboru();
+//                    break;
+//                default:
+//                    pyt = null;
+//                    System.out.println("ERROR! Z³y typ pytania podczas odczytu pliku XML!");
+//                    break;
+//                }
+
+//                pyt.setWagaPytania(czyWaga);
+//                pyt.setTresc(trescPytania);
+//                pyt.setIdPytania(idPytania);
+                //System.out.println(i+" obrazek "+obrazek);
+                //pyt.setListaOdpowiedzi(extractOdpowiedzi(nod));
+
+
+                //quiz..add(pyt);
             }
 
-        return quiz;
+
         }
-        else{
-            return null;
-        }
+
+    return ;
     }
     
     
@@ -331,56 +435,103 @@ public class XMLReader {
             return null;
         }
     }
+    
+    
+    private NodeList initializeStaff2(String filePath, String tag){
+        try{
+            File XMLFile = new File(filePath);
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(XMLFile);
 
-    private Odpowiedzi extractOdpowiedzi(Node bigNod) {
-        Odpowiedzi odpowiedzi = new Odpowiedzi();
-        
-        NodeList nodeList = bigNod.getChildNodes();
-        
+            //doc.getDocumentElement().normalize();
 
-        if(nodeList.getLength()>0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
-            //nodeList = nodeList.item(5).getChildNodes();
+            //System.out.println("Root element: "+doc.getDocumentElement().getNodeName());
+
+            //return doc.getElementsByTagName(tag);
+            return doc.getDocumentElement().getChildNodes();
             
-//            for(int k=0; k<nodeList.getLength() ; k++){
-//                Node nod = nodeList.item(k);
-//                System.out.println("************"+nod.getNodeName()+"************"+nod.getTextContent());
-//            }
+        } catch(Exception e){
+            System.out.println("CoÅ› sie spsuÅ‚o w initializeStaff("+tag+") :-( ");
+            e.printStackTrace();
             
-            for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
-
-                Node nod = nodeList.item(i);
-                Odpowiedz odp = null;
-
-                if(nod.getNodeType() == Node.ELEMENT_NODE){
-                    odp = new Odpowiedz();
-//System.out.println("************"+nod.getNodeName()+"************"+nod.getTextContent());                    
-                    Element elem = (Element)nod;
-                
-                    //int id = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
-                    //int typ = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
-                    //boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
-                    String trescOdpowiedzi = elem.getElementsByTagName("tresc").item(0).getTextContent();
-                    
-                    
-                    
-                    //pyt.setWagaPytania(czyWaga);
-                    odp.setTresc(trescOdpowiedzi);
-                    //odp.setKryteria(extractOdpowiedzi(nod));
-                    
-
-                    
-                }         
-                
-                odpowiedzi.add(odp);
-            }
-        return odpowiedzi;
-        }
-        else{
             return null;
         }
+    }
+
+
+
+    private void wczytajOdpowiedzi(Node cNode) {
         
+        NodeList nodList = cNode.getChildNodes();
+        
+        if(nodList.getLength()==0){// jezeli s¹ jakieœ wêz³y <pytanie> w wêŸle <Pytania>
+           return;
+        }
+        
+        for(int i=0 ; i<nodList.getLength(); i++){// przechodzenie przez kolejne wêz³y  <odpowiedz>
+            Node nod = nodList.item(i);
+            
+            if( nod instanceof Element){
+                System.out.println("node name: "+nod.getNodeName());
+                System.out.println("node value: "+nod.getNodeValue());
+            }
+            
+            
+        }
         
     }
+        
+        
+        
+//
+//        for(int i=0 ; i<nodeList.getLength() ; i++){//po kolei przechodzimy wêz³y <pytanie>
+//            
+//            Node nod = nodeList.item(i);
+//
+//            if(nod.getNodeType() == Node.ELEMENT_NODE){
+//                System.out.println("node name: "+nod.getNodeName());
+//                System.out.println("node value: "+nod.getNodeValue());
+//                //Element elem = (Element)nod;
+//                //int idPytania = Integer.parseInt(elem.getElementsByTagName("id").item(0).getTextContent());
+//                //int typPytania = Integer.parseInt(elem.getElementsByTagName("typ").item(0).getTextContent());
+//                //boolean czyWaga = Boolean.parseBoolean(elem.getElementsByTagName("czy_waga").item(0).getTextContent());
+//                //String trescPytania = elem.getElementsByTagName("tresc").item(0).getTextContent();
+//                
+//                NodeList childNodes = nod.getChildNodes();
+//                for(int j=0; j<childNodes.getLength(); j++){
+//                    Node cNode = childNodes.item(j);
+//                    
+//                    if(cNode instanceof Element){
+//                        String nodeContent = cNode.getLastChild().getTextContent().trim();
+//                        
+//                        switch(cNode.getNodeName()){
+//                            case "id":
+//                                System.out.println("idPytania: "+nodeContent);
+//                                break;
+//                            case "typ":
+//                                System.out.println("typPytania: "+nodeContent);
+//                                break;
+//                            case "czy_waga":
+//                                System.out.println("czyWaga: "+nodeContent);
+//                                break;
+//                            case "obrazek":
+//                                 System.out.println("obrazek: "+nodeContent);
+//                                 break;
+//                            case "tresc":
+//                                 System.out.println("tresc: "+nodeContent);
+//                                 break;
+//                            case "odpowiedzi":
+//                                 wczytajOdpowiedzi(cNode);
+//                                 break;
+//                        }
+//                        
+//                    }
+//                    System.out.println("------------------");
+//                    
+//                    
+//                }
+//            }
     
     
 }
