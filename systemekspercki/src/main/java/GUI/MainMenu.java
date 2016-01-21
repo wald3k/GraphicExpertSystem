@@ -11,6 +11,7 @@ import XLMParser.XMLReader;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import pytania.Quiz;
 
 /**
@@ -110,22 +111,56 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_oProgramieButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String filePath = "C:\\Users\\Freeman\\Documents\\graphicexpert\\systemekspercki\\src\\main\\java\\Resources\\pytania.xml";
-        XMLReader xmlReader = new XMLReader();
-        //Quiz quiz = new Quiz();
+//        String filePath = "C:\\Users\\Freeman\\Documents\\graphicexpert\\systemekspercki\\src\\main\\java\\Resources\\pytania.xml";
+//        XMLReader xmlReader = new XMLReader();
+//        //Quiz quiz = new Quiz();
+//        
+//        try {
+//            xmlReader.extractPytania2(filePath);
+//            //quiz.wypisz();
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        Quiz quiz = new Quiz();
         
-        try {
-            xmlReader.extractPytania2(filePath);
-            //quiz.wypisz();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JFrame oknoQuizu = new QuizJFrame(quiz,this);
+        this.setVisible(false);
+        oknoQuizu.pack();
+        oknoQuizu.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        
+        /////////////////////
+        /// TWORZENIE TABEL:
+        /*
+        EManager eManager= new EManager();
+        eManager.dodajKategorieDoBazy(eManager.getEntityManager());
+        eManager.dodajProgramyDoBazy(eManager.getEntityManager());
+        eManager.dodajPytaniaDoBazy(eManager.getEntityManager()); 
+        eManager.dodajRankingDoBazy(eManager.getEntityManager());              
+        eManager.close();      
+        
+       
+        Analizator analizator = new Analizator();
+        analizator.wczytajProgramyDoListyWynikow();
+        analizator.policzWynikiDlaXPytania(1);
+        analizator.policzWynikiDlaXPytania(2);
+        analizator.policzWynikiDlaXPytania(3);
+        analizator.close();
+        */
+        
+        
+        
+//        
+        
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

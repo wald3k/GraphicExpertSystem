@@ -24,17 +24,17 @@ public class Quiz {
     public Quiz() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
         this.entityManager = entityManagerFactory.createEntityManager();
-        System.out.println("Witam w Asystencie wyboru oprogramowania do edycji grafiki.");
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Czy zacz¹æ ankietê? Y/N");
-        String wybor = sc.nextLine();
-        if (wybor.equals("y") || wybor.equals("Y")) {
-            rozpocznijQuiz();
-            zwrocLiczbePytanZBazy();
-        } else {
-            System.out.println("Wychodzê z programu!");
-            System.exit(0);
-        }
+        //System.out.println("Witam w Asystencie wyboru oprogramowania do edycji grafiki.");
+        //Scanner sc = new Scanner(System.in);
+        //System.out.println("Czy zacz¹æ ankietê? Y/N");
+        //String wybor = sc.nextLine();
+        //if (wybor.equals("y") || wybor.equals("Y")) {
+            //rozpocznijQuiz();
+            //zwrocLiczbePytanZBazy();
+        //} else {
+        //    System.out.println("Wychodzê z programu!");
+        //    System.exit(0);
+        //}
     }
 
     public void close() {//konczenie quizu i robienie porzadkow
@@ -44,9 +44,13 @@ public class Quiz {
 
     public void rozpocznijQuiz() {
         int ilePytan = zwrocLiczbePytanZBazy();
+        
         List<Pytanie> listaPytan = zwrocListePytanZBazy();
+        
         Analizator analizator = new Analizator();
-        analizator.wczytajProgramyDoListyWynikow();        
+        
+        analizator.wczytajProgramyDoListyWynikow();      
+        
         for(Pytanie p: listaPytan){
             System.out.println(p.getIdPytania()+". "+p.getTresc());
             if(pobierzOdpowiedzNaPytanie(p)){

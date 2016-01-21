@@ -6,6 +6,7 @@ package GUI.okna;
 
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -24,10 +25,9 @@ public class OProgramieJFrame extends javax.swing.JFrame {
         super(title);
         parentJFrame = parentFrame;
         JPanel oProgramieJP = new OProgramieJPanel("tytul", this);
-        
-        //JPanel gnuplotJP = new SaveGnuplotDataJPanel("Export to gnuplot data:", popDat, plotService, chartNumber, filter);
-            
+       
         this.getContentPane().add(oProgramieJP);
+        
         /*
         if(chartNumber==3){
             JPanel gensavJP = new SaveGenerationJPanel(popDat,plotService);
