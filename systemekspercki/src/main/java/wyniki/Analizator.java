@@ -82,6 +82,39 @@ public class Analizator {
             System.out.println("Wynik dla programu " + w.getIdProgramu() + " to:\t" + w.getWynik());
         }
     }
+    
+    public String policzWynikiDlaXPytaniaStr(int x) {
+        reset();
+        String str="";
+        //oblicza wynik i dodaje do sumy poprzednich wynikow.
+        System.out.println("Wyniki przed policzeniem dla " + x + " pytania");
+        for (Wynik w : this.listaWynikow) {
+            System.out.println("Wynik dla programu " + w.getIdProgramu() + " to:\t" + w.getWynik());
+        }
+        TypedQuery<Ranking> queryKat = entityManager.createQuery("SELECT r FROM Ranking r where r.kategoria=:numer", Ranking.class);
+        queryKat.setParameter("numer", this.entityManager.find(Kategoria.class, x));
+        int licznik = 0;
+        for (Ranking r : queryKat.getResultList()) {
+
+            Wynik tempWynik = this.listaWynikow.get(licznik);
+
+            Pytanie tempPytanie = this.entityManager.find(Pytanie.class, x);
+            //Odpowiedz tempOdp = this.entityManager.find(Odpowiedz.class, x); 
+
+            double starePunkty = tempWynik.getWynik();
+            double wagaPytania = tempPytanie.getWagaPytania();
+            double mnoznik = tempPytanie.getZaznaczonaOdpowiedz().getMnoznik();
+            double punktyRankingowe = r.getPunkty();
+            tempWynik.setWynik(starePunkty + wagaPytania * mnoznik * punktyRankingowe);
+            licznik++;
+        }
+        System.out.println("Nowe wyniki to:");
+        for (Wynik w : this.listaWynikow) {
+            str += "Wynik dla programu " + w.getIdProgramu() + " to:\t" + w.getWynik()+"\n";
+        }
+        
+        return str;
+    }
 
     public void reset() {
         this.entityManager.close();

@@ -123,7 +123,7 @@ public class MainMenu extends javax.swing.JFrame {
 //        }
         Quiz quiz = new Quiz();
         
-        JFrame oknoQuizu = new QuizJFrame(quiz,this);
+        QuizJFrame oknoQuizu = new QuizJFrame(quiz,this);
         this.setVisible(false);
         oknoQuizu.pack();
         oknoQuizu.setVisible(true);
