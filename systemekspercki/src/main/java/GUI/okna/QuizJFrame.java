@@ -171,10 +171,11 @@ public class QuizJFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.aktualnePytanie++;
         
-        if(aktualnePytanie<=ilePytan){ //normalne pytanie
-            if(aktualnePytanie==ilePytan)jButton2.setText("Zobacz wyniki!");
+        if(aktualnePytanie<=ilePytan-1){ //normalne pytanie
+            if(aktualnePytanie==ilePytan-1)jButton2.setText("Zobacz wyniki!");
             
-            Pytanie p =  listaPytan.get(aktualnePytanie-1);
+            //Pytanie p =  listaPytan.get(aktualnePytanie-1);
+            Pytanie p =  listaPytan.get(aktualnePytanie);
             List<Odpowiedz> listaOdpowiedzi =  p.getListaOdpowiedzi();
             
             this.entityManager.getTransaction().begin();
@@ -183,13 +184,15 @@ public class QuizJFrame extends javax.swing.JFrame {
             analizator.policzWynikiDlaXPytania(p.getIdPytania());
       
             //System.out.println(aktualnePytanie);
-            this.wyswietlPytanie(this.aktualnePytanie-1);
+            //this.wyswietlPytanie(this.aktualnePytanie-1);
+            this.wyswietlPytanie(this.aktualnePytanie);
             if(!jButton1.isEnabled()) jButton1.setEnabled(true);      
         }
         
         
-        else if(aktualnePytanie>ilePytan){//przechodziy do wyników
-            Pytanie p =  listaPytan.get(aktualnePytanie-2);
+        else if(aktualnePytanie>ilePytan-1){//przechodziy do wyników
+            //Pytanie p =  listaPytan.get(aktualnePytanie-2);
+            Pytanie p =  listaPytan.get(aktualnePytanie-1);
             List<Odpowiedz> listaOdpowiedzi =  p.getListaOdpowiedzi();
             
             this.entityManager.getTransaction().begin();
@@ -216,6 +219,7 @@ public class QuizJFrame extends javax.swing.JFrame {
         System.out.println(aktualnePytanie);
         this.wyswietlPytanie(this.aktualnePytanie);
         if(aktualnePytanie<=0) jButton1.setEnabled(false);
+        if(aktualnePytanie>=ilePytan-2) jButton2.setText("Nastêpne Pytanie");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
