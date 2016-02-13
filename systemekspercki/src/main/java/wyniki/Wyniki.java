@@ -17,13 +17,21 @@ import javax.persistence.Entity;
 import program.Program;
 
 /**
+ * Klasa przechowuj¹ca listê wyników dla poszczególnych programów.
  *
- * @author Freeman
+ * @author Freeman, Waldemar Sobiecki
  */
 public class Wyniki {
 
+    /**
+     * Lista wyników.
+     */
     private List<Wynik> listaWynikow;
 
+    /**
+     * Konstruktor bezargumentowy, Wgrywa do listy programów wszystkie kolejne
+     * programy z bazy danych.
+     */
     public Wyniki() {
         this.listaWynikow = new ArrayList<Wynik>();
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
@@ -39,16 +47,24 @@ public class Wyniki {
             System.out.println(w.getIdProgramu());
         }
     }
-    public Wynik zwrocWynikDlaProgramu(int idProgramu){
+    /**
+     * Zwraca wynik dla konkretnego programu.
+     * @param idProgramu jako int, oznacza id programu, którego wynik chcemy pobraæ
+     * @return 
+     */
+    public Wynik zwrocWynikDlaProgramu(int idProgramu) {
         for (Wynik temp : this.listaWynikow) {
-           if(temp.getIdProgramu()==idProgramu){
-               return temp;
-           }
+            if (temp.getIdProgramu() == idProgramu) {
+                return temp;
+            }
         }
         System.out.println("Nie ma takiego programu w wynikach!");
         return null;
     }
-
+    /**
+     * Dodaje wynik do listy.
+     * @param wynik jako Wynik
+     */
     public void dodajWynikDoListy(Wynik wynik) {
         //listaWynikow.add(wynik);
     }
@@ -77,14 +93,9 @@ public class Wyniki {
 //        entityManager.close();
 //        entityManagerFactory.close();
 //    }
-
-    
-    
-
 //    public void obliczWynikiDlaPytania(int idPytania) {
 //        for (Wynik temp : this.listaWynikow) {
 //           if(temp.getIdProgramu())
 //        }
 //    }
-
 }

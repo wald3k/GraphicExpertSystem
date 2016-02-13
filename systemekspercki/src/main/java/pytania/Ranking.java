@@ -15,7 +15,7 @@ import program.Program;
 
 /**
  *
- * @author waldi
+ * @author Waldemar Sobiecki
  */
 @Entity
 public class Ranking {  

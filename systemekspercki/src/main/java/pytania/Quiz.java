@@ -13,14 +13,21 @@ import wyniki.Analizator;
 import wyniki.Wynik;
 
 /**
- *
- * @author Freeman
+ * Klasa odpowiedzialan za przebieg quizu.
+ * @author Freeman, Waldemar Sobiecki
  */
 public class Quiz {
-
+    /**
+     * EntityManagerFactory potrzebne do stworzenia enittyManagera.
+     */
     private EntityManagerFactory entityManagerFactory;
+    /**
+     * EntityManager potrzebny do dzia³ania na bazie danych.
+     */
     private EntityManager entityManager;
-
+    /**
+     * Konstruktor bezargumentowy.
+     */
     public Quiz() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
         this.entityManager = entityManagerFactory.createEntityManager();
@@ -36,12 +43,16 @@ public class Quiz {
         //    System.exit(0);
         //}
     }
-
+    /**
+     * Metoda zamykaj¹ca entityManager oraz entityManagerFactory.
+     */
     public void close() {//konczenie quizu i robienie porzadkow
         this.entityManager.close();
         this.entityManagerFactory.close();
     }
-
+    /**
+     * Metoda rozpoczynaj¹ca quiz.
+     */
     public void rozpocznijQuiz() {
         int ilePytan = zwrocLiczbePytanZBazy();
         
@@ -59,7 +70,10 @@ public class Quiz {
             
         }
     }
-
+    /**
+     * Zwraca liczbê pytañ z bazy danych.
+     * @return 
+     */
     public int zwrocLiczbePytanZBazy() {
         int ilePytan;
         BigInteger temp;
@@ -71,12 +85,21 @@ public class Quiz {
         System.out.println("W bazie jest: " + ilePytan + " pytan");
         return ilePytan;
     }
+    /**
+     * Zwraca listê ze wszystkimi pytaniami z bazy danych.
+     * @return 
+     */
     public List<Pytanie> zwrocListePytanZBazy(){
         List<Pytanie> lista;
         TypedQuery<Pytanie> query = entityManager.createQuery("SELECT p FROM Pytanie p", Pytanie.class);
         lista = query.getResultList();
         return lista;
     }
+    /**
+     * Pobiera od u¿ytkownika odpowiedŸ na pytanie.
+     * @param p
+     * @return 
+     */
     public boolean pobierzOdpowiedzNaPytanie(Pytanie p){
        List<Odpowiedz> listaOdpowiedzi =  p.getListaOdpowiedzi();
        int licznik = 1;

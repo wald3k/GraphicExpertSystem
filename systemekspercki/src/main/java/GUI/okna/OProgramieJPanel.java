@@ -58,7 +58,7 @@ public class OProgramieJPanel extends javax.swing.JPanel {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Program Ekspercki do wyboru programu graficznego.\nPrzygotowany na przedmiot Projekt Zespo³owy,\nprowadzony przez prof. dr. hab. Je¿ego Cytowskiego\nna Wydziale Matematyczno Przyrodniczym\nUniwersystetu Kardyna³a Stefana Wyszyñskiego.\nInformatyka semestr zimowy 2015/2016.\n\nAutorzy:\nWaldemar Sobczak - Pomys³odawca i Kierownik Projektu.\nRafa³ W¹siewicz - G³ówny In¿ynier wykonawczy.\nTwoja Stara - JeŸdzi wind¹ po lesie.");
+        jTextArea1.setText("Program Ekspercki do wyboru programu graficznego.\nPrzygotowany na przedmiot Projekt Zespo³owy,\nprowadzony przez prof. dr. hab. Je¿ego Cytowskiego\nna Wydziale Matematyczno Przyrodniczym\nUniwersystetu Kardyna³a Stefana Wyszyñskiego.\nInformatyka semestr zimowy 2015/2016.\n\nAutorzy:\nWaldemar Sobczak - Pomys³odawca i Kierownik Projektu.\nRafa³ W¹siewicz - G³ówny In¿ynier wykonawczy.");
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/k14.jpg"))); // NOI18N

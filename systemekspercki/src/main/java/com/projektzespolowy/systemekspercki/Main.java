@@ -8,6 +8,7 @@ import program.Program;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import pytania.Kategoria;
 import pytania.Odpowiedz;
 import pytania.Pytanie;
@@ -35,6 +36,11 @@ public class Main {
 //        analizator.policzWynikiDlaXPytania(2);
 //        analizator.policzWynikiDlaXPytania(3);
 //        analizator.close();
-        Quiz quiz = new Quiz();
+        //Quiz quiz = new Quiz();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        //TypedQuery<Program> programQuery = entityManager.createQuery("SELECT p FROM Program p where p.id=:numer", Program.class);
+        Program p = entityManager.find(Program.class, 2);
+        System.out.println(p.getCena());
     }
 }

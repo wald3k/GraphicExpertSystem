@@ -12,28 +12,49 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 /**
- *
- * @author waldi
+ * Klasa symbolizuj¹ca kategoriê w rankingu.
+ * @author Waldemar Sobiecki
  */
 @Entity
 public class Kategoria {     
+    /**
+     * Numer id kategorii.
+     */
     @Id
     @GeneratedValue
     private int id;
+    /**
+     * Nazwa kategorii.
+     */
     private String nazwa; 
-
+    
+    /**
+     * Zwraca nazwê kategorii.
+     * @return nazwa jako String
+     */
     public String getNazwa() {
         return nazwa;
     }
-
+    /**
+     * Ustawia nazwê kategorii.
+     * @param nazwa jako String
+     */
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
 
+    /**
+     * Zwraca id kategorii.
+     * @return id jako int.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Ustawia id kategorii.
+     * @param id jako String.
+     */
     public void setId(int id) {
         this.id = id;
     }

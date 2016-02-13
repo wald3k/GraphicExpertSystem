@@ -18,29 +18,46 @@ import pytania.Pytanie;
 import pytania.Ranking;
 
 /**
- * Generalnie przyjmuje Wyniki, Quiz, oraz kryteria i na podstawie tego tworzy
- * tabelkê; Potem ma za zadanie wybraæ z bazy programy najbardziej zbli¿one do
- * wygenerowanej tabelki.
+ * Klasa odpowiedzialna za analizowanie udzielanych odpowiedzi oraz liczenie
+ * punktacji.
  *
  * @author Freeman
  */
 public class Analizator {
 
+    /**
+     * Lista wyników.
+     */
     private List<Wynik> listaWynikow;
+    /**
+     * EntityManagerFactory potrzebne do stworzenai entityManager'a.
+     */
     private EntityManagerFactory entityManagerFactory;
+    /**
+     * EntityManager.
+     */
     private EntityManager entityManager;
 
+    /**
+     * Konstruktor bezargumentowy.
+     */
     public Analizator() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
         this.entityManager = entityManagerFactory.createEntityManager();
         this.listaWynikow = new ArrayList<Wynik>();
     }
 
+    /**
+     * Zamyka entityManagera i entityManagerFactory.
+     */
     public void close() {
         this.entityManager.close();
         this.entityManagerFactory.close();
     }
 
+    /**
+     * Dodaje do listy wyników programy.
+     */
     public void wczytajProgramyDoListyWynikow() {
         TypedQuery<Program> query = entityManager.createQuery("SELECT p FROM Program p", Program.class);
         for (Program p : query.getResultList()) {
@@ -53,6 +70,11 @@ public class Analizator {
 
     }
 
+    /**
+     * Liczy wyniki dla wskazanego pytania.
+     *
+     * @param x jako int, numer pytania.
+     */
     public void policzWynikiDlaXPytania(int x) {
         reset();
         //oblicza wynik i dodaje do sumy poprzednich wynikow.
@@ -82,10 +104,16 @@ public class Analizator {
             System.out.println("Wynik dla programu " + w.getIdProgramu() + " to:\t" + w.getWynik());
         }
     }
-    
+
+    /**
+     * Podlicza wynik uwzglêdniaj¹c x-te pytanie.
+     *
+     * @param x jako int numer pytania
+     * @return
+     */
     public String policzWynikiDlaXPytaniaStr(int x) {
         reset();
-        String str="";
+        String str = "";
         //oblicza wynik i dodaje do sumy poprzednich wynikow.
         System.out.println("Wyniki przed policzeniem dla " + x + " pytania");
         for (Wynik w : this.listaWynikow) {
@@ -109,13 +137,18 @@ public class Analizator {
             licznik++;
         }
         System.out.println("Nowe wyniki to:");
-        for (Wynik w : this.listaWynikow) {
-            str += "Wynik dla programu " + w.getIdProgramu() + " to:\t" + w.getWynik()+"\n";
+        for (Wynik w : this.listaWynikow) {      
+            Program p = entityManager.find(Program.class, w.getIdProgramu());            
+            str += "Wynik dla  " + p.getNazwa() + " to:\t" + w.getWynik() + "\n";            
         }
-        
+
         return str;
     }
 
+    /**
+     * Resetuje entityManager i entityManagerFactory oraz wypycha wprowadzone
+     * zmiany do bazy danych.
+     */
     public void reset() {
         this.entityManager.close();
         this.entityManagerFactory.close();

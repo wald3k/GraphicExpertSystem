@@ -15,7 +15,7 @@ import pytania.Pytanie;
 
 /**
  *
- * @author waldi
+ * @author Waldemar Sobiecki
  */
 public class ManagerProgramow {
 

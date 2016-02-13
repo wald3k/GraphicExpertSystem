@@ -20,13 +20,30 @@ import pytania.Odpowiedz;
 import pytania.Pytanie;
 import pytania.Ranking;
 
+/**
+ * Klasa s³u¿¹ca do inicjalizacji bazy danych.
+ * @author Waldemar Sobiecki
+ */
 public class EManager {
-
+     /**
+     * EntityManagerFactory potrzebne do stworzenai entityManager'a.
+     */
     private EntityManagerFactory entityManagerFactory;
+    /**
+     * EntityManager.
+     */
     private EntityManager entityManager;
+    /**
+     * Lista programów.
+     */
     private List<Program> listaProgramow;
+    /**
+     * Lista kategorii.
+     */
     private List<Kategoria> listaKategorii;
-
+    /**
+     * Konstruktor bezargumentowy.
+     */
     public EManager() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");
         this.entityManager = entityManagerFactory.createEntityManager();
@@ -35,13 +52,19 @@ public class EManager {
         listaProgramow = new ArrayList<Program>();
         listaKategorii = new ArrayList<Kategoria>();
     }
-
+    /**
+     * Metoda do czyszczenia entitymanagera i uaktualniania bazy danych.
+     */
     public void close() {
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
         this.entityManagerFactory.close();
     }
-
+    /**
+     * Metoda poœrednia dodaj¹ca programy do bazy danych.
+     * S³u¿y do wywo³ywania metody dodajProgramDoBazy.
+     * @param entityManager 
+     */
     public void dodajProgramyDoBazy(EntityManager entityManager) {
         dodajProgramDoBazy("Blender", 0, "Windows/Mac/Linux", 2, 8, 2000, 3560000, 820000, "Blender jest bezp³atnym narzêdziem do tworzenia grafiki trójwymiarowej, zarówno statycznej, jak i animacji. Jest narzêdziem niezwyk³ym, z jednej strony minimalne rozmiary i dostêpnoœæ za darmo, a z drugiej autentyczna konkurencyjnoœæ do takich pakietów jak 3DS MAX.", "https://www.blender.org/");
         dodajProgramDoBazy("SketchUP", 695, "Windows", 4, 8, 500, 1370000, 1010000, "SketchUp to profesjonalne oprogramowanie, s³u¿¹ce do modelowania trójwymiarowych obiektów – domów, statków kosmicznych, rzeŸb itp.", "http://www.sketchup.com/");
@@ -64,7 +87,20 @@ public class EManager {
         dodajProgramDoBazy("FreeCAD", 0, "Windows/Mac/Linux", 1, 2, 1000, 405000, 106000, "Stosunkowo prosty ale darmowy program do projektowania CAD wraz z doœæ rozbudowanym modu³em symulacji ruchu.", "http://www.freecadweb.org/");
 
     }
-
+    /**
+     * Metoda, która zapisuje program w bazie danych.
+     * Wymagane parametry:
+     * @param nazwa nazwa programu.
+     * @param cena cena programu.
+     * @param systemy systemy na jakich mo¿na uruchomiæ program.
+     * @param min_ram minimalna iloœæ ram.
+     * @param zal_ram zalecana do uruchomienia iloœæ ram.
+     * @param hdd wymagane miejsce na dysku twardym w MB.
+     * @param l_tutoriali liczba tutoriali dotycz¹cych programu.
+     * @param l_ofert_pracy liczba ofert pracy.
+     * @param opis krótki opis programu.
+     * @param link link do programu.
+     */
     public void dodajProgramDoBazy(String nazwa, int cena, String systemy,
             int min_ram, int zal_ram, int hdd, int l_tutoriali,
             int l_ofert_pracy, String opis, String link) {
@@ -82,7 +118,10 @@ public class EManager {
         listaProgramow.add(program1);
         entityManager.persist(program1);
     }
-
+    /**
+     * Metoda dodaj¹ca kategorie do bazy danych.
+     * @param entityManager 
+     */
     public void dodajKategorieDoBazy(EntityManager entityManager) {
         Kategoria kategoria1 = new Kategoria();
         kategoria1.setNazwa("3d");
@@ -145,7 +184,10 @@ public class EManager {
         System.out.println("Zakonczono wgrywanie kategorii");
 
     }
-
+    /**
+     * Dodaje ranking do bazy danych.
+     * @param entityManager 
+     */
     public void dodajRankingDoBazy(EntityManager entityManager) {
 
         int licznik = 1;
@@ -179,7 +221,10 @@ public class EManager {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-
+    /**
+     * Metoda pomocnicza wywo³uj¹ca metodê dodajPytanieDoBazy().
+     * @param entityManager 
+     */
     public void dodajPytaniaDoBazy(EntityManager entityManager) {
         dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki 3d?", 1, "tak",1, "nie",0);
         dodajPytanieDoBazy("Czy potrzebujesz programu do grafiki Sculpt?", 2, "tak",1,"nie",0);
@@ -200,7 +245,15 @@ public class EManager {
 //        tempPytanie.setZaznaczonaOdpowiedz(this.entityManager.find(Odpowiedz.class, 10));
 
     }
-
+    /**
+     * Dodaje pytanie do bazy danych.
+     * @param tresc treœæ pytania
+     * @param kategoria kategoria pytania
+     * @param odp1 odpowiedŸ1
+     * @param mnoznik1 mno¿nik odp1
+     * @param odp2 odpowiedŸ2
+     * @param mnoznik2 mno¿nik odp2
+     */
     public void dodajPytanieDoBazy(String tresc, int kategoria, String odp1,double mnoznik1, String odp2,double mnoznik2) {
         Pytanie pytanie1 = new Pytanie();
         pytanie1.setKategoria(kategoria);
@@ -215,7 +268,10 @@ public class EManager {
         entityManager.persist(o1);
         entityManager.persist(o2);
     }
-
+    /**
+     * Zwraca listê programów.
+     * @return 
+     */
     public List<Program> getListaProgramow() {
         return listaProgramow;
     }
